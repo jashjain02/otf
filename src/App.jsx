@@ -4,35 +4,26 @@ import Hero from "./Hero";
 import Register from "./Register";
 import Sports from "./Sports";
 import Checkout from "./Checkout";
+import TermsAndConditions from "./termsandcondtions";
 
 const sports = [
   {
-    id: "football",
-    name: "Football",
-    description: "Join the ultimate football championship",
-    price: 1500,
-    gradient: "from-gray-900 to-black",
-  },
-  {
-    id: "basketball",
-    name: "Basketball",
-    description: "Slam dunk your way to victory",
-    price: 1200,
-    gradient: "from-gray-900 to-black",
-  },
-  {
-    id: "cricket",
-    name: "Cricket",
-    description: "Hit it out of the park",
-    price: 1800,
-    gradient: "from-gray-900 to-black",
-  },
-  {
     id: "pickleball",
-    name: "Pickle Ball",
-    description: "Smash, volley, and win at Pickle Ball!",
-    price: 1000,
-    gradient: "from-gray-900 to-black",
+    name: "Pickleball Rallies (1-hour team slots)",
+    description: "Fun rallies and games for all skill levels.",
+    price: 800,
+  },
+  {
+    id: "strength",
+    name: "Strength Workout with Team Games",
+    description: "Team-based strength and fitness challenges.",
+    price: 700,
+  },
+  {
+    id: "breathwork",
+    name: "Breathwork & Ice Bath Reset Zone",
+    description: "Guided breathwork and ice bath for recovery.",
+    price: 1300,
   },
 ];
 
@@ -119,7 +110,11 @@ function App() {
             isSubmitting={isSubmitting}
             onClose={() => setCurrentStep("hero")}
             onSubmit={handleRegisterSubmit}
+            onShowTerms={() => setCurrentStep("terms")}
           />
+        )}
+        {currentStep === "terms" && (
+          <TermsAndConditions onBack={() => setCurrentStep("register")} />
         )}
         {currentStep === "sports" && (
           <Sports
