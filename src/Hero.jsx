@@ -58,8 +58,8 @@ export default function Hero({ onRegister }) {
           <div className="absolute inset-0 bg-black opacity-40" />
         </div>
         {/* Centered tagline and CTA */}
-        <main className="relative z-10 flex">
-          <div className="flex flex-col items-center w-full px-4 tagline-margin-tablet" style={{ marginTop: '10vh' }}>
+        <main className="relative z-10 flex justify-content-center" style={{ height: '100vh' }}>
+          <div className="flex flex-col items-center justify-content-center w-full px-4 tagline-margin-tablet" style={{ justifyContent: 'center'}}>
             {/* Tagline - vertical arrangement: THE above FIRST MOVE, by Alldays below and right-aligned */}
             <div className="flex flex-col items-center w-full max-w-4xl">
               <div className="w-full flex justify-center">
