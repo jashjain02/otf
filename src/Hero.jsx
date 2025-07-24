@@ -11,7 +11,7 @@ const style = `
     margin-bottom: 20px !important; /* Reduced space between THE and FIRST */
   }
   .tagline-responsive .byalldays-span {
-    margin-top: 20px !important; /* More space between MOVE and by Alldays */
+    margin-top: -16px !important; /* More space between MOVE and by Alldays */
   }
 }
 @media (min-width: 641px) and (max-width: 1024px) {
@@ -24,10 +24,11 @@ const style = `
 }
 @media (max-width: 425px) {
   .tagline-responsive .the-span {
-    margin-bottom: 8px !important; /* Less space between THE and FIRST */
+    margin-bottom: -6px !important; /* Less space between THE and FIRST */
+    margin-top: auto !important; /* No top margin for THE */
   }
   .tagline-responsive .byalldays-span {
-    margin-top: 8px !important; /* Less space between MOVE and by Alldays */
+    margin-top: -6px !important; /* Less space between MOVE and by Alldays */
   }
 }
 `;
@@ -58,8 +59,8 @@ export default function Hero({ onRegister }) {
           <div className="absolute inset-0 bg-black opacity-40" />
         </div>
         {/* Centered tagline and CTA */}
-        <main className="relative z-10 flex">
-          <div className="flex flex-col items-center w-full px-4 tagline-margin-tablet" style={{ marginTop: '10vh' }}>
+        <main className="relative z-10 flex justify-content-center" style={{ height: '100vh' }}>
+          <div className="flex flex-col items-center justify-content-center w-full px-4 tagline-margin-tablet" style={{ justifyContent: 'center'}}>
             {/* Tagline - vertical arrangement: THE above FIRST MOVE, by Alldays below and right-aligned */}
             <div className="flex flex-col items-center w-full max-w-4xl">
               <div className="w-full flex justify-center">
