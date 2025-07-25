@@ -5,12 +5,6 @@ import bgimage from "./assets/bgimage.jpg";
 
 const UPI_ID = "alldaysapp@upi";
 
-// AWS S3 upload placeholders
-const S3_BUCKET = 'your-s3-bucket-name';
-const S3_REGION = 'your-region';
-const S3_ACCESS_KEY = 'YOUR_AWS_ACCESS_KEY';
-const S3_SECRET_KEY = 'YOUR_AWS_SECRET_KEY';
-
 export default function Checkout({
   userData,
   selectedSports,
@@ -46,38 +40,39 @@ export default function Checkout({
     setDragActive(false);
   };
 
-  // S3 upload function (placeholder, use AWS SDK or presigned URL in production)
-  const uploadToS3 = async (file) => {
-    // Placeholder: In production, use a presigned URL or AWS SDK
-    // Return a fake URL for now
-    return `https://s3.${S3_REGION}.amazonaws.com/${S3_BUCKET}/${file.name}`;
-  };
-
+  // Submit registration and file to backend
   const handleSubmit = async () => {
     setSubmitting(true);
     setFeedback("");
-    // 1. Register event
-    const payload = {
-      first_name: userData.firstName,
-      last_name: userData.lastName,
-      email: userData.email,
-      phone: userData.phone,
-      selected_sports: selectedSports,
-      pickleball_level: selectedSports.includes("pickleball") ? pickleLevel : null,
-    };
+    const formData = new FormData();
+    formData.append("first_name", userData.firstName);
+    formData.append("last_name", userData.lastName);
+    formData.append("email", userData.email);
+    formData.append("phone", userData.phone);
+    formData.append("selected_sports", JSON.stringify(selectedSports));
+    formData.append(
+      "pickleball_level",
+      selectedSports.includes("pickleball") ? pickleLevel : ""
+    );
+    if (file) {
+      formData.append("file", file);
+    }
+
     try {
-      const res = await fetch("http://localhost:8000/event-registration", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-      if (!res.ok) throw new Error("Registration failed");
-      // 2. Upload file to S3 (placeholder)
-      let fileUrl = null;
-      if (file) {
-        fileUrl = await uploadToS3(file);
+      const res = await fetch(
+        "https://prelaunch-b2bcb24e6530.herokuapp.com/event-registration",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+      if (!res.ok) {
+        const errData = await res.json();
+        throw new Error(errData.detail || "Registration failed");
       }
-      setFeedback("Registration successful!" + (fileUrl ? " Screenshot uploaded." : ""));
+      setFeedback(
+        "Registration successful! Your data and screenshot have been saved."
+      );
     } catch (err) {
       setFeedback("Error: " + err.message);
     } finally {
