@@ -129,75 +129,77 @@ export default function Sports({
                 )}
                 {/* Accordion for mobile: only show if selected, else hide */}
                 {isPickleball && isMobile ? (
-                  pickleballSelected && (
-                    <div className="mt-4 w-full flex flex-col items-center">
-                      <div className="text-[#e7ff00] font-semibold mb-3 text-center text-base sm:text-lg" style={{ fontFamily: 'Clash Display, sans-serif' }}>
-                        Select your Pickleball skill level:
-                      </div>
-                      <div className="flex flex-wrap w-full max-w-xs mx-auto gap-2">
-                        {pickleLevels.map((level, idx) => (
-                          <label
-                            key={level}
-                            className={`flex items-center justify-center px-1.5 py-1.5 rounded-lg cursor-pointer border-2 transition-all text-xs sm:text-sm
-                              ${
-                                pickleLevel === level
-                                  ? "border-[#e7ff00] bg-[#e7ff00]/10 text-[#e7ff00] font-bold"
-                                  : "border-white/20 bg-white/5 text-white hover:border-[#e7ff00]/60"
-                              }
-                              ${idx < 2 ? 'basis-1/2 grow' : 'basis-full grow'}
-                            `}
-                            style={{ fontFamily: 'Poppins, sans-serif', fontSize: '0.85rem', lineHeight: 1.1, textAlign: 'center', minWidth: 0 }}
-                            onClick={e => e.stopPropagation()}
-                          >
-                            <input
-                              type="radio"
-                              name="pickleball-level"
-                              value={level}
-                              checked={pickleLevel === level}
-                              onChange={() => setPickleLevel(level)}
-                              className="sr-only"
-                            />
-                            {level}
-                          </label>
-                        ))}
-                      </div>
+                  <div
+                    className={`transition-all duration-500 ease-in-out overflow-hidden w-full flex flex-col items-center ${pickleballSelected ? 'max-h-96 opacity-100 mt-4' : 'max-h-0 opacity-0 mt-0 pointer-events-none'}`}
+                    style={{ transitionProperty: 'max-height, opacity, margin-top', willChange: 'max-height, opacity, margin-top' }}
+                  >
+                    <div className="text-[#e7ff00] font-semibold mb-3 text-center text-base sm:text-lg" style={{ fontFamily: 'Clash Display, sans-serif' }}>
+                      Select your Pickleball skill level:
                     </div>
-                  )
+                    <div className="flex flex-wrap w-full max-w-xs mx-auto gap-2">
+                      {pickleLevels.map((level, idx) => (
+                        <label
+                          key={level}
+                          className={`flex items-center justify-center px-1.5 py-1.5 rounded-lg cursor-pointer border-2 transition-all text-xs sm:text-sm
+                            ${
+                              pickleLevel === level
+                                ? "border-[#e7ff00] bg-[#e7ff00]/10 text-[#e7ff00] font-bold"
+                                : "border-white/20 bg-white/5 text-white hover:border-[#e7ff00]/60"
+                            }
+                            ${idx < 2 ? 'basis-1/2 grow' : 'basis-full grow'}
+                          `}
+                          style={{ fontFamily: 'Poppins, sans-serif', fontSize: '0.85rem', lineHeight: 1.1, textAlign: 'center', minWidth: 0 }}
+                          onClick={e => e.stopPropagation()}
+                        >
+                          <input
+                            type="radio"
+                            name="pickleball-level"
+                            value={level}
+                            checked={pickleLevel === level}
+                            onChange={() => setPickleLevel(level)}
+                            className="sr-only"
+                          />
+                          {level}
+                        </label>
+                      ))}
+                    </div>
+                  </div>
                 ) : (
-                  pickleballSelected && (
-                    <div className="mt-6 w-full flex flex-col items-center">
-                      <div className="text-[#e7ff00] font-semibold mb-3 text-center text-base sm:text-lg" style={{ fontFamily: 'Clash Display, sans-serif' }}>
-                        Select your Pickleball skill level:
-                      </div>
-                      <div className="flex flex-wrap w-full max-w-xs mx-auto gap-2">
-                        {pickleLevels.map((level, idx) => (
-                          <label
-                            key={level}
-                            className={`flex items-center justify-center px-1.5 py-1.5 rounded-lg cursor-pointer border-2 transition-all text-xs sm:text-sm
-                              ${
-                                pickleLevel === level
-                                  ? "border-[#e7ff00] bg-[#e7ff00]/10 text-[#e7ff00] font-bold"
-                                  : "border-white/20 bg-white/5 text-white hover:border-[#e7ff00]/60"
-                              }
-                              ${idx < 2 ? 'basis-1/2 grow' : 'basis-full grow'}
-                            `}
-                            style={{ fontFamily: 'Poppins, sans-serif', fontSize: '0.85rem', lineHeight: 1.1, textAlign: 'center', minWidth: 0 }}
-                            onClick={e => e.stopPropagation()}
-                          >
-                            <input
-                              type="radio"
-                              name="pickleball-level"
-                              value={level}
-                              checked={pickleLevel === level}
-                              onChange={() => setPickleLevel(level)}
-                              className="sr-only"
-                            />
-                            {level}
-                          </label>
-                        ))}
-                      </div>
+                  <div
+                    className={`transition-all duration-500 ease-in-out overflow-hidden w-full flex flex-col items-center ${pickleballSelected ? 'max-h-96 opacity-100 mt-6' : 'max-h-0 opacity-0 mt-0 pointer-events-none'}`}
+                    style={{ transitionProperty: 'max-height, opacity, margin-top', willChange: 'max-height, opacity, margin-top' }}
+                  >
+                    <div className="text-[#e7ff00] font-semibold mb-3 text-center text-base sm:text-lg" style={{ fontFamily: 'Clash Display, sans-serif' }}>
+                      Select your Pickleball skill level:
                     </div>
-                  )
+                    <div className="flex flex-wrap w-full max-w-xs mx-auto gap-2">
+                      {pickleLevels.map((level, idx) => (
+                        <label
+                          key={level}
+                          className={`flex items-center justify-center px-1.5 py-1.5 rounded-lg cursor-pointer border-2 transition-all text-xs sm:text-sm
+                            ${
+                              pickleLevel === level
+                                ? "border-[#e7ff00] bg-[#e7ff00]/10 text-[#e7ff00] font-bold"
+                                : "border-white/20 bg-white/5 text-white hover:border-[#e7ff00]/60"
+                            }
+                            ${idx < 2 ? 'basis-1/2 grow' : 'basis-full grow'}
+                          `}
+                          style={{ fontFamily: 'Poppins, sans-serif', fontSize: '0.85rem', lineHeight: 1.1, textAlign: 'center', minWidth: 0 }}
+                          onClick={e => e.stopPropagation()}
+                        >
+                          <input
+                            type="radio"
+                            name="pickleball-level"
+                            value={level}
+                            checked={pickleLevel === level}
+                            onChange={() => setPickleLevel(level)}
+                            className="sr-only"
+                          />
+                          {level}
+                        </label>
+                      ))}
+                    </div>
+                  </div>
                 )}
               </div>
             );
