@@ -106,9 +106,9 @@ export default function Checkout({
           </span>
         </div>
       </header>
-      <div className="flex flex-col md:flex-row w-full max-w-4xl gap-8 mt-24 md:mt-32 relative z-10">
+      <div className="flex flex-col md:flex-row w-full max-w-4xl gap-8 mt-24 md:mt-32 relative z-10 items-center">
         {/* Left: Checkout Details */}
-        <div className="flex-1 bg-white/10 backdrop-blur-lg rounded-2xl p-6 md:p-8 shadow-2xl shadow-[#e7ff00]/10 min-w-[280px]">
+        <div className="flex-1 bg-white/10 backdrop-blur-lg rounded-2xl p-6 md:p-8 shadow-2xl shadow-[#e7ff00]/10 min-w-[280px] w-[22rem] md:w-auto">
           <h2 className="text-xl sm:text-2xl font-semibold mb-4" style={{ color: "#6b58cd", fontFamily: "Clash Display, sans-serif" }}>
             Checkout Details
           </h2>
@@ -139,7 +139,7 @@ export default function Checkout({
           </div>
         </div>
         {/* Right: Payment & Upload */}
-        <div className="flex-1 flex flex-col items-center justify-start bg-white/10 backdrop-blur-lg rounded-2xl p-6 md:p-8 shadow-2xl shadow-[#e7ff00]/10 min-w-[280px]">
+        <div className="flex-1 flex flex-col items-center justify-start bg-white/10 backdrop-blur-lg rounded-2xl p-6 md:p-8 shadow-2xl shadow-[#e7ff00]/10 min-w-[280px] w-[22rem] md:w-auto">
           <h2 className="text-xl sm:text-2xl font-semibold mb-4 text-center" style={{ color: "#6b58cd", fontFamily: "Clash Display, sans-serif" }}>
             UPI Payment
           </h2>
@@ -177,7 +177,7 @@ export default function Checkout({
           </div>
           {/* Submit Button */}
           <button
-            className="w-full mt-auto bg-gradient-to-r from-black via-[#e7ff00] to-black text-black font-bold py-3 rounded-full text-lg shadow-lg hover:scale-105 transition-all duration-200 disabled:opacity-50"
+            className="w-full mt-auto bg-[#e7ff00] text-black font-bold py-3 rounded-full text-lg shadow-lg hover:scale-105 transition-all duration-200 disabled:opacity-50"
             style={{ fontFamily: "Clash Display, sans-serif" }}
             disabled={!file || submitting}
             onClick={handleSubmit}
