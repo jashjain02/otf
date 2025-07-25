@@ -111,20 +111,29 @@ export default function Sports({
                   focus:ring-2 focus:ring-[#e7ff00]
                   ${isPickleball && isMobile ? '' : ''}`}
                 style={{
-                  minHeight: isPickleball
-                    ? (isMobile
-                        ? (pickleballSelected ? 120 + 120 : 120) // collapsed/expanded height for mobile
-                        : (pickleballSelected ? 340 : 220))
-                    : 220
+                  minHeight: isMobile
+                    ? (isPickleball
+                        ? (pickleballSelected ? 240 : 120)
+                        : (selectedSports.includes('pickleball') && selectedSports.length === 1 && pickleballSelected
+                            ? 240
+                            : 120))
+                    : (isPickleball
+                        ? (pickleballSelected ? 340 : 220)
+                        : 220),
+                  width: isMobile ? '18rem' : undefined,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
                 }}
               >
-                <div className="text-lg font-semibold text-white text-center" style={{ fontFamily: "Clash Display, sans-serif" }}>
+                <div className="text-lg font-semibold text-white text-center w-full" style={{ fontFamily: "Clash Display, sans-serif", maxWidth: isMobile ? '15.5rem' : undefined, margin: '0 auto' }}>
                   {sport.name}
                 </div>
-                <div className="text-sm text-gray-200 text-center mb-2" style={{ fontFamily: "Poppins, sans-serif" }}>
+                <div className="text-sm text-gray-200 text-center mb-2 w-full" style={{ fontFamily: "Poppins, sans-serif", maxWidth: isMobile ? '15.5rem' : undefined, margin: '0 auto' }}>
                   {sport.description}
                 </div>
-                <div className="text-base font-bold text-[#e7ff00]">₹{sport.price} per person</div>
+                <div className="text-base font-bold text-[#e7ff00] w-full text-center" style={{ maxWidth: isMobile ? '15.5rem' : undefined, margin: '0 auto' }}>₹{sport.price} per person</div>
                 {selected && (
                   <CheckCircle className="absolute top-3 right-3 text-[#e7ff00] bg-black/60 rounded-full" size={22} />
                 )}
