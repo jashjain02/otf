@@ -104,6 +104,13 @@ export default function Hero({ onRegister }) {
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 sm:h-6 sm:w-6 mr-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="#e7ff00" strokeWidth="2"><circle cx="12" cy="12" r="9"/><path strokeLinecap="round" strokeLinejoin="round" d="M12 7v5l3 3"/></svg>
               <span>4PM to 8PM</span>
             </div>
+            {/* 50-word white text, same font size as location, no box, max-width as heading */}
+            <div
+              className="w-full max-w-4xl text-center mt-2 mb-2"
+              style={{ color: '#fff', fontFamily: 'Clash Display, sans-serif', fontSize: '0.78rem', fontWeight: 500, lineHeight: 1.5, marginLeft: 'auto', marginRight: 'auto' }}
+            >
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nisi eu consectetur consectetur, nisl nisi consectetur nisi, euismod euismod nisi nisi euismod. Pellentesque euismod, nisi eu consectetur consectetur, nisl nisi consectetur nisi, euismod euismod nisi nisi euismod. Pellentesque euismod, nisi eu consectetur consectetur.
+            </div>
             {/* CTA Button */}
             <button
               onClick={onRegister}
