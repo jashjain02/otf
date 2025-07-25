@@ -134,17 +134,20 @@ export default function Sports({
                       <div className="text-[#e7ff00] font-semibold mb-3 text-center text-base sm:text-lg" style={{ fontFamily: 'Clash Display, sans-serif' }}>
                         Select your Pickleball skill level:
                       </div>
-                      <div className="grid grid-cols-2 gap-2 w-full max-w-xs mx-auto">
-                        {pickleLevels.slice(0, 2).map((level) => (
+                      <div className="flex flex-wrap w-full max-w-xs mx-auto gap-2">
+                        {pickleLevels.map((level, idx) => (
                           <label
                             key={level}
-                            className={`flex items-center justify-center px-2 py-2 rounded-lg cursor-pointer border-2 transition-all text-sm sm:text-base
+                            className={`flex items-center justify-center px-1.5 py-1.5 rounded-lg cursor-pointer border-2 transition-all text-xs sm:text-sm
                               ${
                                 pickleLevel === level
                                   ? "border-[#e7ff00] bg-[#e7ff00]/10 text-[#e7ff00] font-bold"
                                   : "border-white/20 bg-white/5 text-white hover:border-[#e7ff00]/60"
-                              }`}
-                            style={{ fontFamily: 'Poppins, sans-serif', minWidth: 80 }}
+                              }
+                              ${idx < 2 ? 'basis-1/2 grow' : 'basis-full grow'}
+                            `}
+                            style={{ fontFamily: 'Poppins, sans-serif', fontSize: '0.85rem', lineHeight: 1.1, textAlign: 'center', minWidth: 0 }}
+                            onClick={e => e.stopPropagation()}
                           >
                             <input
                               type="radio"
@@ -157,27 +160,6 @@ export default function Sports({
                             {level}
                           </label>
                         ))}
-                      </div>
-                      <div className="grid grid-cols-1 gap-2 w-full max-w-xs mx-auto mt-2">
-                        <label
-                          className={`flex items-center justify-center px-2 py-2 rounded-lg cursor-pointer border-2 transition-all text-sm sm:text-base
-                            ${
-                              pickleLevel === pickleLevels[2]
-                                ? "border-[#e7ff00] bg-[#e7ff00]/10 text-[#e7ff00] font-bold"
-                                : "border-white/20 bg-white/5 text-white hover:border-[#e7ff00]/60"
-                            }`}
-                          style={{ fontFamily: 'Poppins, sans-serif', minWidth: 80 }}
-                        >
-                          <input
-                            type="radio"
-                            name="pickleball-level"
-                            value={pickleLevels[2]}
-                            checked={pickleLevel === pickleLevels[2]}
-                            onChange={() => setPickleLevel(pickleLevels[2])}
-                            className="sr-only"
-                          />
-                          {pickleLevels[2]}
-                        </label>
                       </div>
                     </div>
                   )
@@ -187,17 +169,20 @@ export default function Sports({
                       <div className="text-[#e7ff00] font-semibold mb-3 text-center text-base sm:text-lg" style={{ fontFamily: 'Clash Display, sans-serif' }}>
                         Select your Pickleball skill level:
                       </div>
-                      <div className="grid grid-cols-2 gap-2 w-full max-w-xs mx-auto">
-                        {pickleLevels.slice(0, 2).map((level) => (
+                      <div className="flex flex-wrap w-full max-w-xs mx-auto gap-2">
+                        {pickleLevels.map((level, idx) => (
                           <label
                             key={level}
-                            className={`flex items-center justify-center px-2 py-2 rounded-lg cursor-pointer border-2 transition-all text-sm sm:text-base
+                            className={`flex items-center justify-center px-1.5 py-1.5 rounded-lg cursor-pointer border-2 transition-all text-xs sm:text-sm
                               ${
                                 pickleLevel === level
                                   ? "border-[#e7ff00] bg-[#e7ff00]/10 text-[#e7ff00] font-bold"
                                   : "border-white/20 bg-white/5 text-white hover:border-[#e7ff00]/60"
-                              }`}
-                            style={{ fontFamily: 'Poppins, sans-serif', minWidth: 80 }}
+                              }
+                              ${idx < 2 ? 'basis-1/2 grow' : 'basis-full grow'}
+                            `}
+                            style={{ fontFamily: 'Poppins, sans-serif', fontSize: '0.85rem', lineHeight: 1.1, textAlign: 'center', minWidth: 0 }}
+                            onClick={e => e.stopPropagation()}
                           >
                             <input
                               type="radio"
@@ -210,27 +195,6 @@ export default function Sports({
                             {level}
                           </label>
                         ))}
-                      </div>
-                      <div className="grid grid-cols-1 gap-2 w-full max-w-xs mx-auto mt-2">
-                        <label
-                          className={`flex items-center justify-center px-2 py-2 rounded-lg cursor-pointer border-2 transition-all text-sm sm:text-base
-                            ${
-                              pickleLevel === pickleLevels[2]
-                                ? "border-[#e7ff00] bg-[#e7ff00]/10 text-[#e7ff00] font-bold"
-                                : "border-white/20 bg-white/5 text-white hover:border-[#e7ff00]/60"
-                            }`}
-                          style={{ fontFamily: 'Poppins, sans-serif', minWidth: 80 }}
-                        >
-                          <input
-                            type="radio"
-                            name="pickleball-level"
-                            value={pickleLevels[2]}
-                            checked={pickleLevel === pickleLevels[2]}
-                            onChange={() => setPickleLevel(pickleLevels[2])}
-                            className="sr-only"
-                          />
-                          {pickleLevels[2]}
-                        </label>
                       </div>
                     </div>
                   )
