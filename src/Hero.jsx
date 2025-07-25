@@ -1,37 +1,20 @@
+  // Responsive tagline font size for mobile (original behavior)
+  const style = `
+    @media (max-width: 640px) {
+      .tagline-responsive {
+        font-size: 50% !important;
+      }
+    }
+    @media (min-width: 641px) and (max-width: 1024px) {
+      .tagline-responsive {
+        font-size: 70% !important;
+      }
+    }
+  `;
 import React from "react";
 import logo from "./assets/logo.png";
 
-// Responsive tagline font size for mobile
-const style = `
-@media (max-width: 640px) {
-  .tagline-responsive {
-    font-size: 50% !important; /* Try 50% for smaller screens */
-  }
-  .tagline-responsive .the-span {
-    margin-bottom: 20px !important; /* Reduced space between THE and FIRST */
-  }
-  .tagline-responsive .byalldays-span {
-    margin-top: -16px !important; /* More space between MOVE and by Alldays */
-  }
-}
-@media (min-width: 641px) and (max-width: 1024px) {
-  .tagline-responsive {
-    font-size: 70% !important;
-  }
-  .tagline-margin-tablet {
-    margin-top: 20vh !important;
-  }
-}
-@media (max-width: 425px) {
-  .tagline-responsive .the-span {
-    margin-bottom: -6px !important; /* Less space between THE and FIRST */
-    margin-top: auto !important; /* No top margin for THE */
-  }
-  .tagline-responsive .byalldays-span {
-    margin-top: -6px !important; /* Less space between MOVE and by Alldays */
-  }
-}
-`;
+
 
 export default function Hero({ onRegister }) {
   return (
@@ -69,18 +52,18 @@ export default function Hero({ onRegister }) {
                     className="font-clash font-semibold block text-left"
                     style={{
                       color: '#6b58cd',
-                      fontSize: '600%', // FIRST MOVE size
+                      fontSize: '600%',
                       letterSpacing: '0.01em',
                       lineHeight: 1.05,
                       marginBottom: 0,
                     }}
                   >
                     <span
-                      className="block font-clash font-semibold the-span"
+                      className="block font-clash font-semibold"
                       style={{
-                        fontSize: '65%', // Reduced from 75% to 60%
+                        fontSize: '65%',
                         color: '#6b58cd',
-                        marginBottom: '-15px', // 1px gap between THE and FIRST MOVE
+                        marginBottom: '-12px', // Fixed for all screens
                       }}
                     >
                       THE
@@ -88,11 +71,11 @@ export default function Hero({ onRegister }) {
                     FIRST MOVE
                   </span>
                   <span
-                    className="font-clash font-semibold block text-right byalldays-span"
+                    className="font-clash font-semibold block text-right"
                     style={{
                       color: '#e7ff00',
                       fontSize: '200%',
-                      marginTop: '-20px',
+                      marginTop: '-14px', // Fixed for all screens
                       marginRight: '0.05em',
                     }}
                   >

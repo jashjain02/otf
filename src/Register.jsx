@@ -27,7 +27,7 @@ export default function Register({
   return (
     <>
       <style>{registerMobileStyle}</style>
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-6" style={{ overflow: 'auto' }}>
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-6 min-h-screen w-full overflow-y-auto">
         {/* Background image and overlay */}
         <div className="absolute inset-0 w-full h-full z-0">
           <div
