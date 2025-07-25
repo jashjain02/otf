@@ -86,60 +86,78 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-black relative overflow-hidden">
-      <div
-        className="fixed inset-0 w-full h-full z-0"
-        style={{
-          backgroundImage: `url(${bgImage})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-        }}
-      >
-        <div className="absolute inset-0 bg-black opacity-70"></div>
+    <>
+      {/* Global Back Arrow Button (top left, just below ALLDAYS logo, not on hero) - fixed to viewport */}
+      {currentStep !== "hero" && (
+        <button
+          onClick={() => {
+            if (currentStep === "register") setCurrentStep("hero");
+            else if (currentStep === "terms") setCurrentStep("register");
+            else if (currentStep === "sports") setCurrentStep("register");
+            else if (currentStep === "checkout") setCurrentStep("sports");
+          }}
+          className="absolute left-4 sm:left-10 top-20 sm:top-24 z-[100] bg-[#e7ff00] text-black rounded-full font-bold shadow-lg hover:scale-105 transition-all duration-200 flex items-center justify-center"
+          aria-label="Back"
+          style={{ fontFamily: 'Clash Display, sans-serif', width: 36, height: 36, minWidth: 0, minHeight: 0, padding: 0 }}
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        </button>
+      )}
+      <div className="min-h-screen bg-black relative overflow-hidden">
+        <div
+          className="fixed inset-0 w-full h-full z-0"
+          style={{
+            backgroundImage: `url(${bgImage})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+          }}
+        >
+          <div className="absolute inset-0 bg-black opacity-70"></div>
+        </div>
+        <div className="relative z-10">
+          {currentStep === "hero" && (
+            <Hero onRegister={() => setCurrentStep("register")} />
+          )}
+          {currentStep === "register" && (
+            <Register
+              userData={userData}
+              setUserData={setUserData}
+              errors={errors}
+              isSubmitting={isSubmitting}
+              onClose={() => setCurrentStep("hero")}
+              onSubmit={handleRegisterSubmit}
+              onShowTerms={() => setCurrentStep("terms")}
+            />
+          )}
+          {currentStep === "terms" && (
+            <TermsAndConditions onBack={() => setCurrentStep("register")} />
+          )}
+          {currentStep === "sports" && (
+            <Sports
+              sports={sports}
+              selectedSports={selectedSports}
+              toggleSportSelection={toggleSportSelection}
+              onBack={() => setCurrentStep("register")}
+              onNext={() => setCurrentStep("checkout")}
+              pickleLevel={pickleLevel}
+              setPickleLevel={setPickleLevel}
+            />
+          )}
+          {currentStep === "checkout" && (
+            <Checkout
+              userData={userData}
+              selectedSports={selectedSports}
+              sports={sports}
+              getTotalAmount={getTotalAmount}
+              onBack={() => setCurrentStep("sports")}
+              onPayment={handlePayment}
+              pickleLevel={pickleLevel}
+            />
+          )}
+        </div>
       </div>
-      <div className="relative z-10">
-        {currentStep === "hero" && (
-          <Hero onRegister={() => setCurrentStep("register")} />
-        )}
-        {currentStep === "register" && (
-          <Register
-            userData={userData}
-            setUserData={setUserData}
-            errors={errors}
-            isSubmitting={isSubmitting}
-            onClose={() => setCurrentStep("hero")}
-            onSubmit={handleRegisterSubmit}
-            onShowTerms={() => setCurrentStep("terms")}
-          />
-        )}
-        {currentStep === "terms" && (
-          <TermsAndConditions onBack={() => setCurrentStep("register")} />
-        )}
-        {currentStep === "sports" && (
-          <Sports
-            sports={sports}
-            selectedSports={selectedSports}
-            toggleSportSelection={toggleSportSelection}
-            onBack={() => setCurrentStep("register")}
-            onNext={() => setCurrentStep("checkout")}
-            pickleLevel={pickleLevel}
-            setPickleLevel={setPickleLevel}
-          />
-        )}
-        {currentStep === "checkout" && (
-          <Checkout
-            userData={userData}
-            selectedSports={selectedSports}
-            sports={sports}
-            getTotalAmount={getTotalAmount}
-            onBack={() => setCurrentStep("sports")}
-            onPayment={handlePayment}
-            pickleLevel={pickleLevel}
-          />
-        )}
-      </div>
-    </div>
+    </>
   );
 }
 

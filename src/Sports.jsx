@@ -246,15 +246,6 @@ export default function Sports({
           </button>
         </div>
       </div>
-      {/* Back button for accessibility (optional) */}
-      <button
-        onClick={onBack}
-        className="absolute top-4 left-4 z-40 text-white hover:text-[#e7ff00] transition-colors bg-black/40 rounded-full p-2"
-        aria-label="Back"
-        style={{ fontFamily: "Clash Display, sans-serif" }}
-      >
-        <ArrowLeft size={28} />
-      </button>
     </div>
   );
 }

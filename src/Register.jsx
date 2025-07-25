@@ -48,15 +48,7 @@ export default function Register({
             <span className="text-xl sm:text-2xl font-bold tracking-wider" style={{ color: '#e7ff00', fontFamily: 'Clash Display, sans-serif' }}>ALLDAYS</span>
           </div>
         </header>
-        {/* Modal content */}
         <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-4 sm:p-8 w-full max-w-xs sm:max-w-sm relative shadow-2xl shadow-[#e7ff00]/10 z-10 mt-0 register-modal-large-mobile md:mt-[5%] lg:mt-[3%]">
-          <button
-            onClick={onClose}
-            className="absolute top-2 left-2 sm:top-4 sm:left-4 text-white hover:text-[#e7ff00] transition-colors"
-            aria-label="Go back"
-          >
-            <ArrowLeft size={24} />
-          </button>
           <div className="text-center mb-4 sm:mb-8">
             <h3
               className="text-2xl sm:text-3xl font-semibold mb-2"
@@ -66,7 +58,7 @@ export default function Register({
             </h3>
             <p className="text-gray-400 text-sm sm:text-base">Join the ultimate sports event</p>
           </div>
-          <div className="space-y-2 sm:space-y-3">
+          <div className="space-y-4 sm:space-y-3">
             <div>
               <div className="relative">
                 <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white" size={18} />
@@ -124,7 +116,7 @@ export default function Register({
               {errors.phone && <p className="text-[#e7ff00] text-sm mt-1">{errors.phone}</p>}
             </div>
             {/* Terms and Conditions Checkbox */}
-            <div className="flex items-center mt-2">
+            <div className="flex items-center my-4">
               <input
                 type="checkbox"
                 id="terms"
@@ -140,7 +132,8 @@ export default function Register({
             <button
               onClick={onSubmit}
               disabled={isSubmitting || !agreedToTerms}
-              className="w-full bg-[#e7ff00] text-black py-3 rounded-lg font-semibold transition-all duration-300 disabled:opacity-50 text-base sm:text-lg"
+              className="w-full bg-[#e7ff00] text-black py-3 rounded-full font-bold transition-all duration-200 disabled:opacity-50 text-lg shadow-lg hover:scale-105 mt-4"
+              style={{ fontFamily: 'Clash Display, sans-serif' }}
             >
               {isSubmitting ? 'Creating Account...' : 'Continue to Sports Selection'}
             </button>

@@ -1,3 +1,16 @@
+  {/* Fixed Back Arrow Button (only if onBack is provided, bottom left) */}
+  {typeof onBack === 'function' && (
+    <button
+      onClick={onBack}
+      className="fixed bottom-4 left-4 z-50 bg-[#e7ff00] text-black rounded-full p-3 font-bold shadow-lg hover:scale-105 transition-all duration-200"
+      aria-label="Back"
+      style={{ fontFamily: 'Clash Display, sans-serif' }}
+    >
+      <span style={{ display: 'flex', alignItems: 'center' }}>
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      </span>
+    </button>
+  )}
 import React, { useRef, useState } from "react";
 import logo from "./assets/logo.png";
 import qr from "./assets/qr.jpeg";
