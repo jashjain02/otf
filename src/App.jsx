@@ -99,11 +99,11 @@ function App() {
             else if (currentStep === "sports") setCurrentStep("register");
             else if (currentStep === "checkout") setCurrentStep("sports");
           }}
-          className="absolute left-4 sm:left-10 top-20 sm:top-24 z-[100] bg-[#e7ff00] text-black rounded-full font-bold shadow-lg hover:scale-105 transition-all duration-200 flex items-center justify-center"
+          className="absolute left-4 sm:left-10 top-20 sm:top-24 z-[100] bg-black/40 rounded-full font-bold shadow-lg hover:scale-105 transition-all duration-200 flex items-center justify-center"
           aria-label="Back"
-          style={{ fontFamily: 'Clash Display, sans-serif', width: 36, height: 36, minWidth: 0, minHeight: 0, padding: 0 }}
+          style={{ fontFamily: 'Clash Display, sans-serif', width: 36, height: 36, minWidth: 0, minHeight: 0, padding: 0, backdropFilter: 'blur(2px)' }}
         >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e7ff00" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
         </button>
       )}
       <div className="min-h-screen bg-black relative overflow-hidden">
