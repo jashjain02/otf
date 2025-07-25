@@ -48,7 +48,7 @@ export default function Register({
           </div>
         </header>
         {/* Modal content */}
-        <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-4 sm:p-8 w-full max-w-xs sm:max-w-md relative shadow-2xl shadow-[#e7ff00]/10 z-10 mt-0 register-modal-large-mobile md:mt-[5%] lg:mt-[3%]">
+        <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-4 sm:p-8 w-full max-w-xs sm:max-w-sm relative shadow-2xl shadow-[#e7ff00]/10 z-10 mt-0 register-modal-large-mobile md:mt-[5%] lg:mt-[3%]">
           <button
             onClick={onClose}
             className="absolute top-2 left-2 sm:top-4 sm:left-4 text-white hover:text-[#e7ff00] transition-colors"
