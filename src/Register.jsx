@@ -13,6 +13,7 @@ const registerMobileStyle = `
   }
 `;
 
+
 export default function Register({
   userData,
   setUserData,
