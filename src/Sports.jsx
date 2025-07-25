@@ -87,7 +87,7 @@ export default function Sports({
         >
           Choose Your Activities
         </h2>
-        <div className="w-full max-w-3xl grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="w-full max-w-3xl grid grid-cols-1 md:grid-cols-3 gap-6 place-items-center">
           {staticSports.map((sport) => {
             const selected = selectedSports.includes(sport.id);
             // Determine if this is the pickleball card and selected
@@ -102,6 +102,7 @@ export default function Sports({
                 onClick={() => toggleSportSelection(sport.id)}
                 onKeyDown={(e) => handleCardKeyDown(e, sport.id)}
                 className={`group relative flex flex-col items-center justify-between p-6 rounded-2xl bg-white/10 backdrop-blur-lg border-2 transition-all duration-300 cursor-pointer outline-none
+                  w-72 md:w-auto
                   ${
                     selected
                       ? "border-[#e7ff00] shadow-[0_0_16px_2px_#e7ff00] ring-2 ring-[#e7ff00]"
