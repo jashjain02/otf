@@ -217,7 +217,7 @@ export default function Sports({
         </div>
       </main>
       {/* Sticky total and CTA */}
-      <div className="fixed bottom-0 left-0 w-full z-30 flex flex-col items-center bg-gradient-to-t from-black/90 via-black/60 to-transparent pt-4 pb-6">
+      <div className="fixed bottom-0 left-0 w-full z-30 flex flex-col items-center bg-gradient-to-t from-black/95 via-black/80 to-transparent pt-4 pb-6">
         <div className="w-full max-w-3xl flex flex-col sm:flex-row items-center justify-between gap-4 px-4">
           <div className="text-lg sm:text-xl font-bold text-white" style={{ fontFamily: "Clash Display, sans-serif" }}>
             Total: <span className="text-[#e7ff00]">₹{selectedSports.length > 0
