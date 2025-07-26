@@ -37,18 +37,21 @@ export default function Sports({
       id: "pickleball",
       name: "Pickleball Rallies (1-hour team slots)",
       description: "Fun rallies and games for all skill levels.",
+      timing: "4-8pm",
       price: 800,
     },
     {
       id: "strength",
       name: "Strength Workout with Team Games",
       description: "High-intensity strength workouts with electrifying group energy.",
+      timing: "4-5:30pm",
       price: 700,
     },
     {
       id: "breathwork",
       name: "Breathwork & Ice Bath Reset Zone",
       description: "Guided breathwork and ice bath for recovery.",
+      timing: "6-8pm",
       price: 1300,
     },
   ];
@@ -113,13 +116,13 @@ export default function Sports({
                 style={{
                   minHeight: isMobile
                     ? (isPickleball
-                        ? (pickleballSelected ? 240 : 120)
+                        ? (pickleballSelected ? 280 : 160)
                         : (selectedSports.includes('pickleball') && selectedSports.length === 1 && pickleballSelected
-                            ? 240
-                            : 120))
+                            ? 280
+                            : 160))
                     : (isPickleball
-                        ? (pickleballSelected ? 340 : 220)
-                        : 220),
+                        ? (pickleballSelected ? 380 : 260)
+                        : 260),
                   width: isMobile ? '18rem' : undefined,
                   display: 'flex',
                   flexDirection: 'column',
@@ -132,6 +135,15 @@ export default function Sports({
                 </div>
                 <div className="text-sm text-gray-200 text-center mb-2 w-full" style={{ fontFamily: "Poppins, sans-serif", maxWidth: isMobile ? '15.5rem' : undefined, margin: '0 auto' }}>
                   {sport.description}
+                </div>
+                <div className="flex items-center justify-center gap-1 mb-2 w-full" style={{ maxWidth: isMobile ? '15.5rem' : undefined, margin: '0 auto' }}>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 text-[#e7ff00]" fill="none" viewBox="0 0 24 24" stroke="#e7ff00" strokeWidth="2">
+                    <circle cx="12" cy="12" r="9"/>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 7v5l3 3"/>
+                  </svg>
+                  <span className="text-sm font-medium text-[#e7ff00]" style={{ fontFamily: "Poppins, sans-serif" }}>
+                    {sport.timing}
+                  </span>
                 </div>
                 <div className="text-base font-bold text-[#e7ff00] w-full text-center" style={{ maxWidth: isMobile ? '15.5rem' : undefined, margin: '0 auto' }}>₹{sport.price} per person</div>
                 {selected && (
@@ -230,15 +242,19 @@ export default function Sports({
           </div>
           <button
             onClick={() => {
+              if (selectedSports.length === 0) {
+                alert("Please select at least one activity before proceeding.");
+                return;
+              }
               if (selectedSports.includes("pickleball") && !pickleLevel) {
                 alert("Please select a Pickle Ball level before proceeding.");
                 return;
               }
               onNext();
             }}
-            disabled={selectedSports.includes("pickleball") && !pickleLevel}
+            disabled={selectedSports.length === 0 || (selectedSports.includes("pickleball") && !pickleLevel)}
             className={`mt-2 sm:mt-0 px-8 py-3 rounded-full font-semibold text-lg sm:text-xl bg-[#e7ff00] text-black shadow-lg hover:scale-105 transition-all duration-200
-              ${selectedSports.includes("pickleball") && !pickleLevel ? "opacity-50 cursor-not-allowed" : ""}
+              ${selectedSports.length === 0 || (selectedSports.includes("pickleball") && !pickleLevel) ? "opacity-50 cursor-not-allowed" : ""}
             `}
             style={{ fontFamily: "Clash Display, sans-serif" }}
           >

@@ -11,12 +11,14 @@
       </span>
     </button>
   )}
+  
+
 import React, { useRef, useState } from "react";
 import logo from "./assets/logo.png";
 import qr from "./assets/qr.jpeg";
 import bgimage from "./assets/bgimage.jpg";
 
-const UPI_ID = "alldaysapp@upi";
+const UPI_ID = "dhvani.shah0610-1@okaxis";
 
 export default function Checkout({
   userData,
@@ -32,6 +34,7 @@ export default function Checkout({
   const [submitting, setSubmitting] = useState(false);
   const fileInputRef = useRef();
   const [feedback, setFeedback] = useState("");
+  const [copied, setCopied] = useState(false);
 
   // File upload handlers
   const handleFileChange = (e) => {
@@ -52,6 +55,19 @@ export default function Checkout({
     e.preventDefault();
     setDragActive(false);
   };
+
+  // Copy UPI ID to clipboard
+  const handleCopyUPI = async () => {
+    try {
+      await navigator.clipboard.writeText(UPI_ID);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 5000);
+    } catch (err) {
+      console.error('Failed to copy UPI ID:', err);
+    }
+  };
+
+
 
   // Submit registration and file to backend
   const handleSubmit = async () => {
@@ -156,7 +172,38 @@ export default function Checkout({
           <h2 className="text-xl sm:text-2xl font-semibold mb-4 text-center" style={{ color: "#6b58cd", fontFamily: "Clash Display, sans-serif" }}>
             UPI Payment
           </h2>
-          <img src={qr} alt="UPI QR" className="w-40 h-40 rounded-lg mx-auto mb-8 border-4 border-[#e7ff00] bg-white" />
+          <img src={qr} alt="UPI QR" className="w-40 h-40 rounded-lg mx-auto mb-4 border-4 border-[#e7ff00] bg-white" />
+          {/* UPI ID with Copy Button */}
+          <div className="flex items-center justify-center gap-2 mb-8 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-lg border border-[#e7ff00]/30">
+            <span className="text-white font-semibold" style={{ fontFamily: "Poppins, sans-serif" }}>
+              {copied ? "Copied!" : UPI_ID}
+            </span>
+            <button
+              onClick={handleCopyUPI}
+              className="p-1 hover:scale-110 transition-all duration-200"
+              aria-label="Copy UPI ID"
+            >
+              <svg 
+                width="16" 
+                height="16" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke={copied ? "#10b981" : "#e7ff00"} 
+                strokeWidth="2" 
+                strokeLinecap="round" 
+                strokeLinejoin="round"
+              >
+                {copied ? (
+                  <path d="M20 6L9 17l-5-5"/>
+                ) : (
+                  <>
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                  </>
+                )}
+              </svg>
+            </button>
+          </div>
           {/* File Upload */}
           <div
             className={`w-full flex flex-col items-center justify-center border-2 border-dashed rounded-xl p-4 mb-4 transition-all duration-200

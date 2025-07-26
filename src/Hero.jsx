@@ -105,7 +105,7 @@ export default function Hero({ onRegister }) {
               <span className="mr-2 sm:mr-4">3rd August 2025</span> */}
               {/* Time icon */}
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 sm:h-6 sm:w-6 mr-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="#e7ff00" strokeWidth="2"><circle cx="12" cy="12" r="9"/><path strokeLinecap="round" strokeLinejoin="round" d="M12 7v5l3 3"/></svg>
-              <span>4PM to 8PM</span>
+              <span>4 PM  to 8 PM</span>
             </div>
             {/* 50-word white text, same font size as location, no box, max-width as heading */}
             <div
@@ -114,7 +114,7 @@ export default function Hero({ onRegister }) {
             >
               We’re excited to invite you to the <em>Alldays Pre-Launch Experience</em> — a day to kick back, move, and connect.
   <br />
-  We’ll have great food, hydration drinks, and of course, coffee &amp; matcha to keep you going. Plus, enjoy the beats of our very own <em>DJ RARA</em> all evening.
+  We’ll have great food, hydration drinks, and of course, coffee &amp; matcha to keep you going. Plus, enjoy the beats of our very own  <em>DJ RARA</em>  all evening.
 
             </div>
             {/* CTA Button */}
