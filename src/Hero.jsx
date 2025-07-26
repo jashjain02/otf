@@ -25,7 +25,7 @@ export default function Hero({ onRegister }) {
         <header className="absolute top-0 left-0 w-full flex items-center p-4 sm:p-8 z-20">
           <div className="flex items-center">
             <img src={logo} alt="Alldays Logo" className="h-10 w-10 sm:h-12 sm:w-12 mr-2" />
-            <span className="text-xl sm:text-2xl font-bold tracking-wider" style={{ color: '#e7ff00', fontFamily: 'Clash Display, sans-serif' }}>ALLDAYS</span>
+            <span className="text-xl sm:text-2xl font-bold tracking-wider" style={{ color: '#e7ff00', fontFamily: 'Clash Display, sans-serif' }}>Alldays</span>
           </div>
         </header>
         {/* Background image with overlay */}
@@ -86,7 +86,7 @@ export default function Hero({ onRegister }) {
             </div>
             {/* Event info line: location and time, mobile-friendly */}
             <div
-              className="flex items-center gap-2 sm:gap-4 mt-8 mb-4 px-2 sm:px-6 py-2 rounded-full shadow-md font-semibold text-[0.68rem] sm:text-xl overflow-x-auto whitespace-nowrap max-w-[80vw] sm:max-w-[32rem] backdrop-blur-md border border-white/30"
+              className="flex items-center gap-2 sm:gap-4 mt-8 mb-6 px-2 sm:px-6 py-2 rounded-full shadow-md font-semibold text-[0.68rem] sm:text-xl overflow-x-auto whitespace-nowrap max-w-[80vw] sm:max-w-[32rem] backdrop-blur-md border border-white/30"
               style={{
                 fontFamily: 'Clash Display, sans-serif',
                 color: '#e7ff00',
@@ -100,6 +100,9 @@ export default function Hero({ onRegister }) {
               {/* Location icon */}
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 sm:h-6 sm:w-6 mr-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="#e7ff00" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M12 11.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"/><path strokeLinecap="round" strokeLinejoin="round" d="M19 10.5c0 7-7 11-7 11s-7-4-7-11a7 7 0 1114 0z"/></svg>
               <span className="mr-2 sm:mr-4">Off The Mark, Powai</span>
+              {/* Date icon */}
+              {/* <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 sm:h-6 sm:w-6 mr-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="#e7ff00" strokeWidth="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+              <span className="mr-2 sm:mr-4">3rd August 2025</span> */}
               {/* Time icon */}
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 sm:h-6 sm:w-6 mr-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="#e7ff00" strokeWidth="2"><circle cx="12" cy="12" r="9"/><path strokeLinecap="round" strokeLinejoin="round" d="M12 7v5l3 3"/></svg>
               <span>4PM to 8PM</span>
@@ -107,9 +110,12 @@ export default function Hero({ onRegister }) {
             {/* 50-word white text, same font size as location, no box, max-width as heading */}
             <div
               className="w-full max-w-4xl text-center mt-2 mb-2"
-              style={{ color: '#fff', fontFamily: 'Clash Display, sans-serif', fontSize: '0.78rem', fontWeight: 500, lineHeight: 1.5, marginLeft: 'auto', marginRight: 'auto' }}
+              style={{ color: '#fff', fontFamily: 'Clash Display, sans-serif', fontSize: '0.98rem', fontWeight: 500, lineHeight: 1.5, marginLeft: 'auto', marginRight: 'auto' }}
             >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nisi eu consectetur consectetur, nisl nisi consectetur nisi, euismod euismod nisi nisi euismod. Pellentesque euismod, nisi eu consectetur consectetur, nisl nisi consectetur nisi, euismod euismod nisi nisi euismod. Pellentesque euismod, nisi eu consectetur consectetur.
+              We’re excited to invite you to the <em>Alldays Pre-Launch Experience</em> — a day to kick back, move, and connect.
+  <br />
+  We’ll have great food, hydration drinks, and of course, coffee &amp; matcha to keep you going. Plus, enjoy the beats of our very own <em>DJ RARA</em> all evening.
+
             </div>
             {/* CTA Button */}
             <button

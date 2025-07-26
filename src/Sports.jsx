@@ -42,7 +42,7 @@ export default function Sports({
     {
       id: "strength",
       name: "Strength Workout with Team Games",
-      description: "Team-based strength and fitness challenges.",
+      description: "High-intensity strength workouts with electrifying group energy.",
       price: 700,
     },
     {
@@ -75,7 +75,7 @@ export default function Sports({
             className="text-xl sm:text-2xl font-bold tracking-wider"
             style={{ color: "#e7ff00", fontFamily: "Clash Display, sans-serif" }}
           >
-            ALLDAYS
+            Alldays
           </span>
         </div>
       </header>

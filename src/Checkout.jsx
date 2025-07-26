@@ -115,7 +115,7 @@ export default function Checkout({
             className="text-xl sm:text-2xl font-bold tracking-wider"
             style={{ color: "#e7ff00", fontFamily: "Clash Display, sans-serif" }}
           >
-            ALLDAYS
+            Alldays
           </span>
         </div>
       </header>

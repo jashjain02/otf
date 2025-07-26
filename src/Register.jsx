@@ -41,11 +41,11 @@ export default function Register({
           />
           <div className="absolute inset-0 bg-black opacity-80" />
         </div>
-        {/* Logo and ALLDAYS branding */}
+        {/* Logo and Alldays branding */}
         <header className="absolute top-0 left-0 w-full flex items-center p-4 sm:p-8 z-20">
           <div className="flex items-center">
             <img src={logo} alt="Alldays Logo" className="h-10 w-10 sm:h-12 sm:w-12 mr-2" />
-            <span className="text-xl sm:text-2xl font-bold tracking-wider" style={{ color: '#e7ff00', fontFamily: 'Clash Display, sans-serif' }}>ALLDAYS</span>
+            <span className="text-xl sm:text-2xl font-bold tracking-wider" style={{ color: '#e7ff00', fontFamily: 'Clash Display, sans-serif' }}>Alldays</span>
           </div>
         </header>
         <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-4 sm:p-8 w-full max-w-xs sm:max-w-sm relative shadow-2xl shadow-[#e7ff00]/10 z-10 mt-0 register-modal-large-mobile md:mt-[5%] lg:mt-[3%]">
@@ -133,9 +133,9 @@ export default function Register({
               onClick={onSubmit}
               disabled={isSubmitting || !agreedToTerms}
               className="w-full bg-[#e7ff00] text-black py-3 rounded-full font-bold transition-all duration-200 disabled:opacity-50 text-lg shadow-lg hover:scale-105 mt-4"
-              style={{ fontFamily: 'Clash Display, sans-serif' }}
+              style={{ fontFamily: 'Poppins Medium, sans-serif' }}
             >
-              {isSubmitting ? 'Creating Account...' : 'Continue to Sports Selection'}
+              {isSubmitting ? 'Continue' : 'Continue'}
             </button>
           </div>
         </div>

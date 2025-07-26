@@ -49,11 +49,11 @@ export default function TermsAndConditions({ onBack }) {
         />
         <div className="absolute inset-0 bg-black opacity-80" />
       </div>
-      {/* Logo and ALLDAYS branding */}
+      {/* Logo and Alldays branding */}
       <header className="absolute top-0 left-0 w-full flex items-center p-4 sm:p-8 z-20">
         <div className="flex items-center">
           <img src={logo} alt="Alldays Logo" className="h-10 w-10 sm:h-12 sm:w-12 mr-2" />
-          <span className="text-xl sm:text-2xl font-bold tracking-wider" style={{ color: '#e7ff00', fontFamily: 'Clash Display, sans-serif' }}>ALLDAYS</span>
+          <span className="text-xl sm:text-2xl font-bold tracking-wider" style={{ color: '#e7ff00', fontFamily: 'Clash Display, sans-serif' }}>Alldays</span>
         </div>
       </header>
       {/* Glassmorphic Terms Container */}
