@@ -35,7 +35,7 @@ export default function Sports({
   const staticSports = [
     {
       id: "pickleball",
-      name: "Pickleball Rallies (1-hour team slots)",
+      name: "Pickleball Rallies (40 min team slots)",
       description: "Fun rallies and games for all skill levels.",
       timing: "4-8pm",
       price: 800,
