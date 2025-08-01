@@ -28,7 +28,18 @@ export default function Checkout({
   onBack,
   onPayment,
   pickleLevel,
+  onSuccess,
 }) {
+  // Track checkout page view
+  React.useEffect(() => {
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'begin_checkout', {
+        event_category: 'Ecommerce',
+        event_label: 'Checkout Started',
+        value: getTotalAmount()
+      });
+    }
+  }, [getTotalAmount]);
   const [file, setFile] = useState(null);
   const [dragActive, setDragActive] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -99,9 +110,20 @@ export default function Checkout({
         const errData = await res.json();
         throw new Error(errData.detail || "Registration failed");
       }
-      setFeedback(
-        "Registration successful! Your data and screenshot have been saved."
-      );
+      // Track successful purchase
+      if (typeof window !== 'undefined' && window.gtag) {
+        window.gtag('event', 'purchase', {
+          event_category: 'Ecommerce',
+          event_label: 'Registration Completed',
+          value: getTotalAmount(),
+          currency: 'INR'
+        });
+      }
+      
+      // Redirect to confirmation page immediately
+      if (onSuccess) {
+        onSuccess();
+      }
     } catch (err) {
       setFeedback("Error: " + err.message);
     } finally {

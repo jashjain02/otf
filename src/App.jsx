@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import bgImage from "./assets/bgimage.jpg";
 import Hero from "./Hero";
 import Register from "./Register";
 import Sports from "./Sports";
 import Checkout from "./Checkout";
 import TermsAndConditions from "./termsandcondtions";
+import Confirmation from "./Confirmation";
+import { useAnalytics } from "./hooks/useAnalytics";
 
 const sports = [
   {
@@ -39,6 +41,36 @@ function App() {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [pickleLevel, setPickleLevel] = useState("");
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  
+  const { trackPageView, trackEvent } = useAnalytics();
+
+  // Track page views when step changes
+  useEffect(() => {
+    if (showConfirmation) {
+      trackPageView("Confirmation");
+    } else {
+      switch (currentStep) {
+        case "hero":
+          trackPageView("Hero");
+          break;
+        case "register":
+          trackPageView("Registration");
+          break;
+        case "terms":
+          trackPageView("Terms and Conditions");
+          break;
+        case "sports":
+          trackPageView("Sports Selection");
+          break;
+        case "checkout":
+          trackPageView("Checkout");
+          break;
+        default:
+          trackPageView("Hero");
+      }
+    }
+  }, [currentStep, showConfirmation, trackPageView]);
 
   const validateForm = () => {
     const newErrors = {};
@@ -66,14 +98,24 @@ function App() {
     setIsSubmitting(true);
     await new Promise((resolve) => setTimeout(resolve, 1000));
     setIsSubmitting(false);
+    trackEvent("registration_completed", "User Action", "Registration Form Submitted", 1);
     setCurrentStep("sports");
   };
 
   const toggleSportSelection = (sportId) => {
+    const isSelected = selectedSports.includes(sportId);
     setSelectedSports((prev) =>
-      prev.includes(sportId)
+      isSelected
         ? prev.filter((id) => id !== sportId)
         : [...prev, sportId]
+    );
+    
+    // Track sport selection/deselection
+    trackEvent(
+      isSelected ? "sport_deselected" : "sport_selected", 
+      "Sports Selection", 
+      sportId, 
+      isSelected ? 0 : 1
     );
   };
 
@@ -86,6 +128,20 @@ function App() {
 
   const handlePayment = async () => {
     alert("Payment integration would be handled here with Razorpay");
+  };
+
+  const handleBackToHome = () => {
+    trackEvent("back_to_home", "Navigation", "Returned to Home", 1);
+    setCurrentStep("hero");
+    setShowConfirmation(false);
+    setUserData({
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+    });
+    setSelectedSports([]);
+    setPickleLevel("");
   };
 
   return (
@@ -147,7 +203,7 @@ function App() {
               setPickleLevel={setPickleLevel}
             />
           )}
-          {currentStep === "checkout" && (
+          {currentStep === "checkout" && !showConfirmation && (
             <Checkout
               userData={userData}
               selectedSports={selectedSports}
@@ -156,6 +212,17 @@ function App() {
               onBack={() => setCurrentStep("sports")}
               onPayment={handlePayment}
               pickleLevel={pickleLevel}
+              onSuccess={() => setShowConfirmation(true)}
+            />
+          )}
+          {showConfirmation && (
+            <Confirmation
+              userData={userData}
+              selectedSports={selectedSports}
+              sports={sports}
+              getTotalAmount={getTotalAmount}
+              pickleLevel={pickleLevel}
+              onBackToHome={handleBackToHome}
             />
           )}
         </div>
