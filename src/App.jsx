@@ -42,6 +42,8 @@ function App() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [pickleLevel, setPickleLevel] = useState("");
   const [showConfirmation, setShowConfirmation] = useState(false);
+  const [registrationCounts, setRegistrationCounts] = useState(null);
+  const [isLoadingCounts, setIsLoadingCounts] = useState(false);
   
   const { trackPageView, trackEvent } = useAnalytics();
 
@@ -71,6 +73,46 @@ function App() {
       }
     }
   }, [currentStep, showConfirmation, trackPageView]);
+
+  // Fetch registration counts when reaching sports step
+  useEffect(() => {
+    if (currentStep === "sports") {
+      fetchRegistrationCounts();
+    }
+  }, [currentStep]);
+
+  const fetchRegistrationCounts = async () => {
+    setIsLoadingCounts(true);
+    try {
+      const response = await fetch('http://localhost:8000/registration-counts');
+      if (response.ok) {
+        const data = await response.json();
+        setRegistrationCounts(data);
+      } else {
+        console.error('Failed to fetch registration counts');
+        // Set default availability if API fails
+        setRegistrationCounts({
+          availability: {
+            pickleball: { available: true, current_count: 0, limit: 5, remaining: 5 },
+            strength: { available: true, current_count: 0, limit: 50, remaining: 50 },
+            breathwork: { available: true, current_count: 0, limit: 50, remaining: 50 }
+          }
+        });
+      }
+    } catch (error) {
+      console.error('Error fetching registration counts:', error);
+      // Set default availability if API fails
+      setRegistrationCounts({
+        availability: {
+          pickleball: { available: true, current_count: 0, limit: 5, remaining: 5 },
+          strength: { available: true, current_count: 0, limit: 50, remaining: 50 },
+          breathwork: { available: true, current_count: 0, limit: 50, remaining: 50 }
+        }
+      });
+    } finally {
+      setIsLoadingCounts(false);
+    }
+  };
 
   const validateForm = () => {
     const newErrors = {};
@@ -103,6 +145,12 @@ function App() {
   };
 
   const toggleSportSelection = (sportId) => {
+    // Check if sport is available before allowing selection
+    if (registrationCounts && !registrationCounts.availability[sportId]?.available) {
+      alert(`${sportId.charAt(0).toUpperCase() + sportId.slice(1)} is currently sold out. Please choose another activity.`);
+      return;
+    }
+
     const isSelected = selectedSports.includes(sportId);
     setSelectedSports((prev) =>
       isSelected
@@ -142,6 +190,7 @@ function App() {
     });
     setSelectedSports([]);
     setPickleLevel("");
+    setRegistrationCounts(null);
   };
 
   return (
@@ -201,6 +250,8 @@ function App() {
               onNext={() => setCurrentStep("checkout")}
               pickleLevel={pickleLevel}
               setPickleLevel={setPickleLevel}
+              registrationCounts={registrationCounts}
+              isLoadingCounts={isLoadingCounts}
             />
           )}
           {currentStep === "checkout" && !showConfirmation && (

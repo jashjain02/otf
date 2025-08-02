@@ -14,6 +14,8 @@ export default function Sports({
   pickleLevel,
   setPickleLevel,
   getTotalAmount,
+  registrationCounts,
+  isLoadingCounts,
 }) {
   // Responsive: detect if mobile (for accordion)
   const [isMobile, setIsMobile] = React.useState(false);
@@ -28,7 +30,10 @@ export default function Sports({
   const handleCardKeyDown = (e, id) => {
     if (e.key === " " || e.key === "Enter") {
       e.preventDefault();
-      toggleSportSelection(id);
+      const isAvailable = registrationCounts ? registrationCounts.availability[id]?.available : true;
+      if (isAvailable) {
+        toggleSportSelection(id);
+      }
     }
   };
 
@@ -90,26 +95,44 @@ export default function Sports({
         >
           Choose Your Activities
         </h2>
+        
+        {/* Loading indicator */}
+        {isLoadingCounts && (
+          <div className="text-center mb-6">
+            <div className="inline-flex items-center gap-2 text-white/80" style={{ fontFamily: "Poppins, sans-serif" }}>
+              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-[#e7ff00]"></div>
+              Loading availability...
+            </div>
+          </div>
+        )}
         <div className="w-full max-w-3xl grid grid-cols-1 md:grid-cols-3 gap-6 place-items-center">
           {staticSports.map((sport) => {
             const selected = selectedSports.includes(sport.id);
             // Determine if this is the pickleball card and selected
             const isPickleball = sport.id === "pickleball";
             const pickleballSelected = isPickleball && selected;
+            
+            // Check availability
+            const isAvailable = registrationCounts ? registrationCounts.availability[sport.id]?.available : true;
+            const currentCount = registrationCounts ? registrationCounts.availability[sport.id]?.current_count : 0;
+            const limit = registrationCounts ? registrationCounts.availability[sport.id]?.limit : 50;
+            const remaining = registrationCounts ? registrationCounts.availability[sport.id]?.remaining : 50;
             return (
               <div
                 key={sport.id}
                 tabIndex={0}
                 aria-pressed={selected}
                 role="button"
-                onClick={() => toggleSportSelection(sport.id)}
+                onClick={() => isAvailable && toggleSportSelection(sport.id)}
                 onKeyDown={(e) => handleCardKeyDown(e, sport.id)}
-                className={`group relative flex flex-col items-center justify-between p-6 rounded-2xl bg-white/10 backdrop-blur-lg border-2 transition-all duration-300 cursor-pointer outline-none
+                className={`group relative flex flex-col items-center justify-between p-6 rounded-2xl bg-white/10 backdrop-blur-lg border-2 transition-all duration-300 outline-none
                   w-72 md:w-auto
                   ${
-                    selected
-                      ? "border-[#e7ff00] shadow-[0_0_16px_2px_#e7ff00] ring-2 ring-[#e7ff00]"
-                      : "border-white/20 hover:border-[#e7ff00]/60"
+                    !isAvailable
+                      ? "border-red-500/50 opacity-60 cursor-not-allowed"
+                      : selected
+                      ? "border-[#e7ff00] shadow-[0_0_16px_2px_#e7ff00] ring-2 ring-[#e7ff00] cursor-pointer"
+                      : "border-white/20 hover:border-[#e7ff00]/60 cursor-pointer"
                   }
                   focus:ring-2 focus:ring-[#e7ff00]
                   ${isPickleball && isMobile ? '' : ''}`}
@@ -146,8 +169,31 @@ export default function Sports({
                   </span>
                 </div>
                 <div className="text-base font-bold text-[#e7ff00] w-full text-center" style={{ maxWidth: isMobile ? '15.5rem' : undefined, margin: '0 auto' }}>₹{sport.price} per person</div>
+                
+                {/* Availability info - only for pickle ball */}
+                {registrationCounts && sport.id === "pickleball" && (
+                  <div className="text-xs text-white/70 text-center mt-2" style={{ fontFamily: "Poppins, sans-serif" }}>
+                    {isAvailable ? (
+                      `${remaining} spots remaining`
+                    ) : (
+                      "SOLD OUT"
+                    )}
+                  </div>
+                )}
+                
                 {selected && (
                   <CheckCircle className="absolute top-3 right-3 text-[#e7ff00] bg-black/60 rounded-full" size={22} />
+                )}
+                
+                {/* Sold out overlay */}
+                {!isAvailable && (
+                  <div className="absolute inset-0 bg-black/70 rounded-2xl flex items-center justify-center">
+                    <div className="text-center">
+                      <div className="text-red-400 font-bold text-lg" style={{ fontFamily: "Clash Display, sans-serif" }}>
+                        SOLD OUT
+                      </div>
+                    </div>
+                  </div>
                 )}
                 {/* Accordion for mobile: only show if selected, else hide */}
                 {isPickleball && isMobile ? (
@@ -250,12 +296,27 @@ export default function Sports({
                 alert("Please select a Pickle Ball level before proceeding.");
                 return;
               }
+              
+              // Check if any selected sport is sold out
+              const soldOutSports = selectedSports.filter(sportId => {
+                return registrationCounts && !registrationCounts.availability[sportId]?.available;
+              });
+              
+              if (soldOutSports.length > 0) {
+                alert("One or more selected activities are no longer available. Please refresh the page and select different activities.");
+                return;
+              }
+              
               onNext();
             }}
-            disabled={selectedSports.length === 0 || (selectedSports.includes("pickleball") && !pickleLevel)}
-            className={`mt-2 sm:mt-0 px-8 py-3 rounded-full font-semibold text-lg sm:text-xl bg-[#e7ff00] text-black shadow-lg hover:scale-105 transition-all duration-200
-              ${selectedSports.length === 0 || (selectedSports.includes("pickleball") && !pickleLevel) ? "opacity-50 cursor-not-allowed" : ""}
-            `}
+            disabled={
+              selectedSports.length === 0 || 
+              (selectedSports.includes("pickleball") && !pickleLevel) ||
+              (registrationCounts && selectedSports.some(sportId => !registrationCounts.availability[sportId]?.available))
+            }
+                          className={`mt-2 sm:mt-0 px-8 py-3 rounded-full font-semibold text-lg sm:text-xl bg-[#e7ff00] text-black shadow-lg hover:scale-105 transition-all duration-200
+                ${selectedSports.length === 0 || (selectedSports.includes("pickleball") && !pickleLevel) || (registrationCounts && selectedSports.some(sportId => !registrationCounts.availability[sportId]?.available)) ? "opacity-50 cursor-not-allowed" : ""}
+              `}
             style={{ fontFamily: "Clash Display, sans-serif" }}
           >
             Proceed to Checkout
