@@ -78,6 +78,13 @@ function App() {
   useEffect(() => {
     if (currentStep === "sports") {
       fetchRegistrationCounts();
+      
+      // Set up periodic refresh every 30 seconds while on sports page
+      const interval = setInterval(() => {
+        fetchRegistrationCounts();
+      }, 30000);
+      
+      return () => clearInterval(interval);
     }
   }, [currentStep]);
 
@@ -93,7 +100,7 @@ function App() {
         // Set default availability if API fails
         setRegistrationCounts({
           availability: {
-            pickleball: { available: true, current_count: 0, limit: 5, remaining: 5 },
+            pickleball: { available: true, current_count: 0, limit: 42, remaining: 42 },
             strength: { available: true, current_count: 0, limit: 50, remaining: 50 },
             breathwork: { available: true, current_count: 0, limit: 50, remaining: 50 }
           }
@@ -104,7 +111,7 @@ function App() {
       // Set default availability if API fails
       setRegistrationCounts({
         availability: {
-          pickleball: { available: true, current_count: 0, limit: 5, remaining: 5 },
+          pickleball: { available: true, current_count: 0, limit: 42, remaining: 42 },
           strength: { available: true, current_count: 0, limit: 50, remaining: 50 },
           breathwork: { available: true, current_count: 0, limit: 50, remaining: 50 }
         }
@@ -142,6 +149,8 @@ function App() {
     setIsSubmitting(false);
     trackEvent("registration_completed", "User Action", "Registration Form Submitted", 1);
     setCurrentStep("sports");
+    // Refresh availability data after registration
+    setTimeout(() => fetchRegistrationCounts(), 500);
   };
 
   const toggleSportSelection = (sportId) => {
@@ -176,6 +185,8 @@ function App() {
 
   const handlePayment = async () => {
     alert("Payment integration would be handled here with Razorpay");
+    // Refresh availability data after payment
+    setTimeout(() => fetchRegistrationCounts(), 500);
   };
 
   const handleBackToHome = () => {
