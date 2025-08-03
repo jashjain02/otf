@@ -100,7 +100,7 @@ function App() {
         // Set default availability if API fails
         setRegistrationCounts({
           availability: {
-            pickleball: { available: true, current_count: 0, limit: 42, remaining: 42 },
+            pickleball: { available: false, current_count: 0, limit: 0, remaining: 0 },
             strength: { available: true, current_count: 0, limit: 50, remaining: 50 },
             breathwork: { available: true, current_count: 0, limit: 50, remaining: 50 }
           }
@@ -111,7 +111,7 @@ function App() {
       // Set default availability if API fails
       setRegistrationCounts({
         availability: {
-          pickleball: { available: true, current_count: 0, limit: 42, remaining: 42 },
+          pickleball: { available: false, current_count: 0, limit: 0, remaining: 0 },
           strength: { available: true, current_count: 0, limit: 50, remaining: 50 },
           breathwork: { available: true, current_count: 0, limit: 50, remaining: 50 }
         }
