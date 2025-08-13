@@ -41,6 +41,8 @@ function App() {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [pickleLevel, setPickleLevel] = useState("");
+  const [playType, setPlayType] = useState("individual");
+  const [playerNames, setPlayerNames] = useState(['', '', '']);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [registrationCounts, setRegistrationCounts] = useState(null);
   const [isLoadingCounts, setIsLoadingCounts] = useState(false);
@@ -263,6 +265,10 @@ function App() {
               onNext={() => setCurrentStep("checkout")}
               pickleLevel={pickleLevel}
               setPickleLevel={setPickleLevel}
+              playType={playType}
+              setPlayType={setPlayType}
+              playerNames={playerNames}
+              setPlayerNames={setPlayerNames}
               registrationCounts={registrationCounts}
               isLoadingCounts={isLoadingCounts}
             />
@@ -276,6 +282,8 @@ function App() {
               onBack={() => setCurrentStep("sports")}
               onPayment={handlePayment}
               pickleLevel={pickleLevel}
+              playType={playType}
+              playerNames={playerNames}
               onSuccess={() => setShowConfirmation(true)}
             />
           )}

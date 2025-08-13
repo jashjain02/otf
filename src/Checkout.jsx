@@ -28,6 +28,8 @@ export default function Checkout({
   onBack,
   onPayment,
   pickleLevel,
+  playType,
+  playerNames,
   onSuccess,
 }) {
   // Track checkout page view
@@ -177,9 +179,28 @@ export default function Checkout({
               {selectedSports.map((id) => {
                 const sport = sports.find((s) => s.id === id);
                 return (
-                  <li key={id} className="flex justify-between items-center text-white">
-                    <span style={{ fontFamily: "Poppins, sans-serif" }}>{sport?.name}{sport?.id === "pickleball" && pickleLevel ? ` (${pickleLevel})` : ""}</span>
-                    <span className="text-[#e7ff00] font-semibold" style={{ fontFamily: "Poppins, sans-serif" }}>₹{sport?.price}</span>
+                  <li key={id} className="flex flex-col space-y-2">
+                    <div className="flex justify-between items-center text-white">
+                      <span style={{ fontFamily: "Poppins, sans-serif" }}>
+                        {sport?.name}
+                        {sport?.id === "pickleball" ? (
+                          <>
+                            {playType === "individual" ? ` (${pickleLevel})` : " (Group)"}
+                          </>
+                        ) : ""}
+                      </span>
+                      <span className="text-[#e7ff00] font-semibold" style={{ fontFamily: "Poppins, sans-serif" }}>₹{sport?.price}</span>
+                    </div>
+                    {sport?.id === "pickleball" && playType === "group" && (
+                      <div className="text-sm text-gray-300 ml-4">
+                        <div style={{ fontFamily: "Poppins, sans-serif" }}>Group Members:</div>
+                        {playerNames.map((name, index) => (
+                          <div key={index} className="ml-2 text-[#e7ff00]" style={{ fontFamily: "Poppins, sans-serif" }}>
+                            • {name || `Player ${index + 1}`}
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </li>
                 );
               })}

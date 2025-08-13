@@ -13,12 +13,15 @@ export default function Sports({
   onNext,
   pickleLevel,
   setPickleLevel,
+  playType,
+  setPlayType,
+  playerNames,
+  setPlayerNames,
   getTotalAmount,
   registrationCounts,
   isLoadingCounts,
 }) {
-  const [playType, setPlayType] = React.useState("individual"); // Add state for individual/group selection
-  const [playerNames, setPlayerNames] = React.useState(['', '', '']); // State for group player names
+  // Play type and player names are now passed as props
   // Responsive: detect if mobile (for accordion)
   const [isMobile, setIsMobile] = React.useState(false);
   React.useEffect(() => {
@@ -231,16 +234,15 @@ export default function Sports({
                           <div className="text-[#e7ff00] font-semibold mb-3 text-center text-base" style={{ fontFamily: 'Clash Display, sans-serif' }}>
                             Select your Skill Level:
                           </div>
-                          <div className="flex flex-wrap w-full max-w-xs mx-auto gap-2">
-                            {pickleLevels.map((level, idx) => (
+                          <div className="flex flex-col sm:flex-row flex-wrap w-full max-w-xs mx-auto gap-2">
+                            {pickleLevels.map((level) => (
                               <label
                                 key={level}
-                                className={`flex items-center justify-center px-4 py-2 rounded-lg cursor-pointer border-2 transition-all
+                                className={`flex items-center justify-center px-4 py-2 rounded-lg cursor-pointer border-2 transition-all w-full
                                   ${pickleLevel === level
                                     ? "border-[#e7ff00] bg-[#e7ff00]/10 text-[#e7ff00] font-bold"
                                     : "border-white/20 bg-white/5 text-white hover:border-[#e7ff00]/60"
-                                  }
-                                  ${idx < 2 ? 'basis-[48%]' : 'basis-full'}`}
+                                  }`}
                                 style={{ fontFamily: 'Poppins, sans-serif' }}
                                 onClick={e => e.stopPropagation()}
                               >
@@ -307,26 +309,26 @@ export default function Sports({
           </div>
           <button
             onClick={() => {
-              /* Commented out alerts
               if (selectedSports.length === 0) {
                 alert("Please select at least one activity before proceeding.");
                 return;
               }
-              if (selectedSports.includes("pickleball") && !pickleLevel) {
-                alert("Please select a Pickle Ball level before proceeding.");
-                return;
+
+              if (selectedSports.includes("pickleball")) {
+                if (playType === "individual" && !pickleLevel) {
+                  alert("Please select your Pickleball skill level before proceeding.");
+                  return;
+                }
+                
+                if (playType === "group") {
+                  const emptyNames = playerNames.filter(name => !name.trim());
+                  if (emptyNames.length > 0) {
+                    alert("Please enter names for all players in your group before proceeding.");
+                    return;
+                  }
+                }
               }
               
-              // Check if any selected sport is sold out
-              const soldOutSports = selectedSports.filter(sportId => {
-                return registrationCounts && !registrationCounts.availability[sportId]?.available;
-              });
-              
-              if (soldOutSports.length > 0) {
-                alert("One or more selected activities are no longer available. Please refresh the page and select different activities.");
-                return;
-              }
-              */
               onNext();
             }}
             disabled={false}
