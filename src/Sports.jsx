@@ -307,38 +307,47 @@ export default function Sports({
               : 0}
             </span>
           </div>
-          <button
-            onClick={() => {
-              if (selectedSports.length === 0) {
-                alert("Please select at least one activity before proceeding.");
-                return;
-              }
-
-              if (selectedSports.includes("pickleball")) {
-                if (playType === "individual" && !pickleLevel) {
-                  alert("Please select your Pickleball skill level before proceeding.");
-                  return;
-                }
-                
-                if (playType === "group") {
-                  const emptyNames = playerNames.filter(name => !name.trim());
-                  if (emptyNames.length > 0) {
-                    alert("Please enter names for all players in your group before proceeding.");
+          {/* Calculate if the form is valid */}
+          {(() => {
+            const isPickleballSelected = selectedSports.includes("pickleball");
+            const isValid = selectedSports.length > 0 && 
+              (!isPickleballSelected || 
+                (playType === "individual" && pickleLevel) || 
+                (playType === "group" && playerNames.every(name => name.trim())));
+            
+            return (
+              <button
+                onClick={() => {
+                  if (selectedSports.length === 0) {
+                    alert("Please select at least one activity before proceeding.");
                     return;
                   }
-                }
-              }
-              
-              onNext();
-            }}
-            disabled={false}
-                          className={`mt-2 sm:mt-0 px-8 py-3 rounded-full font-semibold text-lg sm:text-xl bg-[#e7ff00] text-black shadow-lg hover:scale-105 transition-all duration-200
-                ${selectedSports.length === 0 || (selectedSports.includes("pickleball") && !pickleLevel) || (registrationCounts && selectedSports.some(sportId => !registrationCounts.availability[sportId]?.available)) ? "opacity-50 cursor-not-allowed" : ""}
-              `}
-            style={{ fontFamily: "Clash Display, sans-serif" }}
-          >
-            Proceed to Checkout
-          </button>
+
+                  if (selectedSports.includes("pickleball")) {
+                    if (playType === "individual" && !pickleLevel) {
+                      alert("Please select your Pickleball skill level before proceeding.");
+                      return;
+                    }
+                    
+                    if (playType === "group") {
+                      const emptyNames = playerNames.filter(name => !name.trim());
+                      if (emptyNames.length > 0) {
+                        alert("Please enter names for all players in your group before proceeding.");
+                        return;
+                      }
+                    }
+                  }
+                  
+                  onNext();
+                }}
+                disabled={!isValid}
+                className={`mt-2 sm:mt-0 px-8 py-3 rounded-full font-semibold text-lg sm:text-xl shadow-lg hover:scale-105 transition-all duration-200 bg-[#e7ff00] text-black disabled:opacity-50`}
+                style={{ fontFamily: "Clash Display, sans-serif" }}
+              >
+                Proceed to Checkout
+              </button>
+            );
+          })()}
         </div>
       </div>
     </div>
