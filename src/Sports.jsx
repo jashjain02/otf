@@ -18,6 +18,7 @@ export default function Sports({
   isLoadingCounts,
 }) {
   const [playType, setPlayType] = React.useState("individual"); // Add state for individual/group selection
+  const [playerNames, setPlayerNames] = React.useState(['', '', '']); // State for group player names
   // Responsive: detect if mobile (for accordion)
   const [isMobile, setIsMobile] = React.useState(false);
   React.useEffect(() => {
@@ -223,36 +224,64 @@ export default function Sports({
                       </div>
                     </div>
 
-                    {/* Skill Level Selection - Only shows after play type is selected */}
+                    {/* Conditional Content Based on Play Type */}
                     <div className={`transition-all duration-300 ${playType ? 'opacity-100 max-h-96' : 'opacity-0 max-h-0 overflow-hidden'}`}>
-                      <div className="text-[#e7ff00] font-semibold mb-3 text-center text-base" style={{ fontFamily: 'Clash Display, sans-serif' }}>
-                        Select your Skill Level:
-                      </div>
-                      <div className="flex flex-wrap w-full max-w-xs mx-auto gap-2">
-                        {pickleLevels.map((level, idx) => (
-                          <label
-                            key={level}
-                            className={`flex items-center justify-center px-4 py-2 rounded-lg cursor-pointer border-2 transition-all
-                              ${pickleLevel === level
-                                ? "border-[#e7ff00] bg-[#e7ff00]/10 text-[#e7ff00] font-bold"
-                                : "border-white/20 bg-white/5 text-white hover:border-[#e7ff00]/60"
-                              }
-                              ${idx < 2 ? 'basis-[48%]' : 'basis-full'}`}
-                            style={{ fontFamily: 'Poppins, sans-serif' }}
-                            onClick={e => e.stopPropagation()}
-                          >
-                            <input
-                              type="radio"
-                              name="pickleball-level"
-                              value={level}
-                              checked={pickleLevel === level}
-                              onChange={() => setPickleLevel(level)}
-                              className="sr-only"
-                            />
-                            {level}
-                          </label>
-                        ))}
-                      </div>
+                      {playType === "individual" ? (
+                        <>
+                          <div className="text-[#e7ff00] font-semibold mb-3 text-center text-base" style={{ fontFamily: 'Clash Display, sans-serif' }}>
+                            Select your Skill Level:
+                          </div>
+                          <div className="flex flex-wrap w-full max-w-xs mx-auto gap-2">
+                            {pickleLevels.map((level, idx) => (
+                              <label
+                                key={level}
+                                className={`flex items-center justify-center px-4 py-2 rounded-lg cursor-pointer border-2 transition-all
+                                  ${pickleLevel === level
+                                    ? "border-[#e7ff00] bg-[#e7ff00]/10 text-[#e7ff00] font-bold"
+                                    : "border-white/20 bg-white/5 text-white hover:border-[#e7ff00]/60"
+                                  }
+                                  ${idx < 2 ? 'basis-[48%]' : 'basis-full'}`}
+                                style={{ fontFamily: 'Poppins, sans-serif' }}
+                                onClick={e => e.stopPropagation()}
+                              >
+                                <input
+                                  type="radio"
+                                  name="pickleball-level"
+                                  value={level}
+                                  checked={pickleLevel === level}
+                                  onChange={() => setPickleLevel(level)}
+                                  className="sr-only"
+                                />
+                                {level}
+                              </label>
+                            ))}
+                          </div>
+                        </>
+                      ) : (
+                        <>
+                          <div className="text-[#e7ff00] font-semibold mb-3 text-center text-base" style={{ fontFamily: 'Clash Display, sans-serif' }}>
+                            Add the names of other three players:
+                          </div>
+                          <div className="flex flex-col w-full max-w-xs mx-auto gap-2">
+                            {[0, 1, 2].map((index) => (
+                              <input
+                                key={index}
+                                type="text"
+                                placeholder={`Player ${index + 1} name`}
+                                value={playerNames[index]}
+                                onChange={(e) => {
+                                  const newNames = [...playerNames];
+                                  newNames[index] = e.target.value;
+                                  setPlayerNames(newNames);
+                                }}
+                                className="w-full px-4 py-2 rounded-lg border-2 border-white/20 bg-white/5 text-white placeholder-white/50 focus:border-[#e7ff00] focus:outline-none transition-all"
+                                style={{ fontFamily: 'Poppins, sans-serif' }}
+                                onClick={e => e.stopPropagation()}
+                              />
+                            ))}
+                          </div>
+                        </>
+                      )}
                     </div>
                   </div>
                 )}
