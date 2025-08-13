@@ -17,6 +17,7 @@ export default function Sports({
   registrationCounts,
   isLoadingCounts,
 }) {
+  const [playType, setPlayType] = React.useState("individual"); // Add state for individual/group selection
   // Responsive: detect if mobile (for accordion)
   const [isMobile, setIsMobile] = React.useState(false);
   React.useEffect(() => {
@@ -104,8 +105,9 @@ export default function Sports({
             </div>
           </div>
         )}
-        <div className="w-full max-w-3xl grid grid-cols-1 md:grid-cols-3 gap-6 place-items-center">
-          {staticSports.map((sport) => {
+        <div className="w-full max-w-5xl flex justify-center">
+          <div className="relative flex flex-row items-start gap-6">
+            {staticSports.map((sport) => {
             const selected = selectedSports.includes(sport.id);
             // Determine if this is the pickleball card and selected
             const isPickleball = sport.id === "pickleball";
@@ -167,112 +169,99 @@ export default function Sports({
                 </div>
                 <div className="text-base font-bold text-[#e7ff00] w-full text-center" style={{ maxWidth: isMobile ? '15.5rem' : undefined, margin: '0 auto' }}>₹{sport.price} per person</div>
                 
-                {/* Availability info - only for pickle ball */}
-                {/* Commented out sold out feature
-                {registrationCounts && sport.id === "pickleball" && (
-                  <div className="text-xs text-white/70 text-center mt-2" style={{ fontFamily: "Poppins, sans-serif" }}>
-                    {isAvailable ? (
-                      `${remaining} spots remaining`
-                    ) : (
-                      "SOLD OUT"
-                    )}
-                  </div>
-                )}
-                */}
-                
                 {selected && (
                   <CheckCircle className="absolute top-3 right-3 text-[#e7ff00] bg-black/60 rounded-full" size={22} />
                 )}
-                
-                {/* Sold out overlay - Commented out */}
-                {/* 
-                {!isAvailable && (
-                  <div className="absolute inset-0 bg-black/70 rounded-2xl flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="text-red-400 font-bold text-lg" style={{ fontFamily: "Clash Display, sans-serif" }}>
-                        SOLD OUT
+
+                {/* Selection Options - Inside pickleball card */}
+                {isPickleball && selected && (
+                  <div className="w-full mt-6">
+                    {/* Play Type Selection */}
+                    <div className="mb-6">
+                      <div className="text-[#e7ff00] font-semibold mb-3 text-center text-base" style={{ fontFamily: 'Clash Display, sans-serif' }}>
+                        Select Play Type:
+                      </div>
+                      <div className="flex flex-wrap w-full max-w-xs mx-auto gap-2">
+                        <label
+                          className={`flex basis-[48%] items-center justify-center px-4 py-2 rounded-lg cursor-pointer border-2 transition-all
+                            ${playType === "individual"
+                              ? "border-[#e7ff00] bg-[#e7ff00]/10 text-[#e7ff00] font-bold"
+                              : "border-white/20 bg-white/5 text-white hover:border-[#e7ff00]/60"
+                            }`}
+                          style={{ fontFamily: 'Poppins, sans-serif' }}
+                          onClick={e => e.stopPropagation()}
+                        >
+                          <input
+                            type="radio"
+                            name="play-type"
+                            value="individual"
+                            checked={playType === "individual"}
+                            onChange={(e) => setPlayType(e.target.value)}
+                            className="sr-only"
+                          />
+                          Individual
+                        </label>
+                        <label
+                          className={`flex basis-[48%] items-center justify-center px-4 py-2 rounded-lg cursor-pointer border-2 transition-all
+                            ${playType === "group"
+                              ? "border-[#e7ff00] bg-[#e7ff00]/10 text-[#e7ff00] font-bold"
+                              : "border-white/20 bg-white/5 text-white hover:border-[#e7ff00]/60"
+                            }`}
+                          style={{ fontFamily: 'Poppins, sans-serif' }}
+                          onClick={e => e.stopPropagation()}
+                        >
+                          <input
+                            type="radio"
+                            name="play-type"
+                            value="group"
+                            checked={playType === "group"}
+                            onChange={(e) => setPlayType(e.target.value)}
+                            className="sr-only"
+                          />
+                          Group
+                        </label>
+                      </div>
+                    </div>
+
+                    {/* Skill Level Selection - Only shows after play type is selected */}
+                    <div className={`transition-all duration-300 ${playType ? 'opacity-100 max-h-96' : 'opacity-0 max-h-0 overflow-hidden'}`}>
+                      <div className="text-[#e7ff00] font-semibold mb-3 text-center text-base" style={{ fontFamily: 'Clash Display, sans-serif' }}>
+                        Select your Skill Level:
+                      </div>
+                      <div className="flex flex-wrap w-full max-w-xs mx-auto gap-2">
+                        {pickleLevels.map((level, idx) => (
+                          <label
+                            key={level}
+                            className={`flex items-center justify-center px-4 py-2 rounded-lg cursor-pointer border-2 transition-all
+                              ${pickleLevel === level
+                                ? "border-[#e7ff00] bg-[#e7ff00]/10 text-[#e7ff00] font-bold"
+                                : "border-white/20 bg-white/5 text-white hover:border-[#e7ff00]/60"
+                              }
+                              ${idx < 2 ? 'basis-[48%]' : 'basis-full'}`}
+                            style={{ fontFamily: 'Poppins, sans-serif' }}
+                            onClick={e => e.stopPropagation()}
+                          >
+                            <input
+                              type="radio"
+                              name="pickleball-level"
+                              value={level}
+                              checked={pickleLevel === level}
+                              onChange={() => setPickleLevel(level)}
+                              className="sr-only"
+                            />
+                            {level}
+                          </label>
+                        ))}
                       </div>
                     </div>
                   </div>
                 )}
-                */}
-                {/* Accordion for mobile: only show if selected, else hide */}
-                {isPickleball && isMobile ? (
-                  <div
-                    className={`transition-all duration-500 ease-in-out overflow-hidden w-full flex flex-col items-center ${pickleballSelected ? 'max-h-96 opacity-100 mt-4' : 'max-h-0 opacity-0 mt-0 pointer-events-none'}`}
-                    style={{ transitionProperty: 'max-height, opacity, margin-top', willChange: 'max-height, opacity, margin-top' }}
-                  >
-                    <div className="text-[#e7ff00] font-semibold mb-3 text-center text-base sm:text-lg" style={{ fontFamily: 'Clash Display, sans-serif' }}>
-                      Select your Pickleball skill level:
-                    </div>
-                    <div className="flex flex-wrap w-full max-w-xs mx-auto gap-2">
-                      {pickleLevels.map((level, idx) => (
-                        <label
-                          key={level}
-                          className={`flex items-center justify-center px-1.5 py-1.5 rounded-lg cursor-pointer border-2 transition-all text-xs sm:text-sm
-                            ${
-                              pickleLevel === level
-                                ? "border-[#e7ff00] bg-[#e7ff00]/10 text-[#e7ff00] font-bold"
-                                : "border-white/20 bg-white/5 text-white hover:border-[#e7ff00]/60"
-                            }
-                            ${idx < 2 ? 'basis-1/2 grow' : 'basis-full grow'}
-                          `}
-                          style={{ fontFamily: 'Poppins, sans-serif', fontSize: '0.85rem', lineHeight: 1.1, textAlign: 'center', minWidth: 0 }}
-                          onClick={e => e.stopPropagation()}
-                        >
-                          <input
-                            type="radio"
-                            name="pickleball-level"
-                            value={level}
-                            checked={pickleLevel === level}
-                            onChange={() => setPickleLevel(level)}
-                            className="sr-only"
-                          />
-                          {level}
-                        </label>
-                      ))}
-                    </div>
-                  </div>
-                ) : (
-                  <div
-                    className={`transition-all duration-500 ease-in-out overflow-hidden w-full flex flex-col items-center ${pickleballSelected ? 'max-h-96 opacity-100 mt-6' : 'max-h-0 opacity-0 mt-0 pointer-events-none'}`}
-                    style={{ transitionProperty: 'max-height, opacity, margin-top', willChange: 'max-height, opacity, margin-top' }}
-                  >
-                    <div className="text-[#e7ff00] font-semibold mb-3 text-center text-base sm:text-lg" style={{ fontFamily: 'Clash Display, sans-serif' }}>
-                      Select your Pickleball skill level:
-                    </div>
-                    <div className="flex flex-wrap w-full max-w-xs mx-auto gap-2">
-                      {pickleLevels.map((level, idx) => (
-                        <label
-                          key={level}
-                          className={`flex items-center justify-center px-1.5 py-1.5 rounded-lg cursor-pointer border-2 transition-all text-xs sm:text-sm
-                            ${
-                              pickleLevel === level
-                                ? "border-[#e7ff00] bg-[#e7ff00]/10 text-[#e7ff00] font-bold"
-                                : "border-white/20 bg-white/5 text-white hover:border-[#e7ff00]/60"
-                            }
-                            ${idx < 2 ? 'basis-1/2 grow' : 'basis-full grow'}
-                          `}
-                          style={{ fontFamily: 'Poppins, sans-serif', fontSize: '0.85rem', lineHeight: 1.1, textAlign: 'center', minWidth: 0 }}
-                          onClick={e => e.stopPropagation()}
-                        >
-                          <input
-                            type="radio"
-                            name="pickleball-level"
-                            value={level}
-                            checked={pickleLevel === level}
-                            onChange={() => setPickleLevel(level)}
-                            className="sr-only"
-                          />
-                          {level}
-                        </label>
-                      ))}
-                    </div>
-                  </div>
-                )}
+
+                {/* Mobile-specific content can be added here if needed */}
               </div>
             );
           })}
+          </div>
         </div>
       </main>
       {/* Sticky total and CTA */}
