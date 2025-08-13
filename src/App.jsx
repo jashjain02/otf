@@ -154,12 +154,14 @@ function App() {
   };
 
   const toggleSportSelection = (sportId) => {
-    // Check if sport is available before allowing selection
+    // Commented out availability check
+    /*
     if (registrationCounts && !registrationCounts.availability[sportId]?.available) {
       alert(`${sportId.charAt(0).toUpperCase() + sportId.slice(1)} is currently sold out. Please choose another activity.`);
       return;
     }
-
+    */
+    
     const isSelected = selectedSports.includes(sportId);
     setSelectedSports((prev) =>
       isSelected

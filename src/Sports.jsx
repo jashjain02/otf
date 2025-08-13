@@ -30,10 +30,7 @@ export default function Sports({
   const handleCardKeyDown = (e, id) => {
     if (e.key === " " || e.key === "Enter") {
       e.preventDefault();
-      const isAvailable = registrationCounts ? registrationCounts.availability[id]?.available : true;
-      if (isAvailable) {
-        toggleSportSelection(id);
-      }
+      toggleSportSelection(id);
     }
   };
 
@@ -45,6 +42,7 @@ export default function Sports({
       timing: "4-8pm",
       price: 800,
     },
+    /* Commented out other activities
     {
       id: "strength",
       name: "Strength Workout with Team Games",
@@ -59,6 +57,7 @@ export default function Sports({
       timing: "6-8pm",
       price: 1300,
     },
+    */
   ];
 
   return (
@@ -123,14 +122,12 @@ export default function Sports({
                 tabIndex={0}
                 aria-pressed={selected}
                 role="button"
-                onClick={() => isAvailable && toggleSportSelection(sport.id)}
+                onClick={() => toggleSportSelection(sport.id)}
                 onKeyDown={(e) => handleCardKeyDown(e, sport.id)}
                 className={`group relative flex flex-col items-center justify-between p-6 rounded-2xl bg-white/10 backdrop-blur-lg border-2 transition-all duration-300 outline-none
                   w-72 md:w-auto
                   ${
-                    !isAvailable
-                      ? "border-red-500/50 opacity-60 cursor-not-allowed"
-                      : selected
+                    selected
                       ? "border-[#e7ff00] shadow-[0_0_16px_2px_#e7ff00] ring-2 ring-[#e7ff00] cursor-pointer"
                       : "border-white/20 hover:border-[#e7ff00]/60 cursor-pointer"
                   }
@@ -171,6 +168,7 @@ export default function Sports({
                 <div className="text-base font-bold text-[#e7ff00] w-full text-center" style={{ maxWidth: isMobile ? '15.5rem' : undefined, margin: '0 auto' }}>₹{sport.price} per person</div>
                 
                 {/* Availability info - only for pickle ball */}
+                {/* Commented out sold out feature
                 {registrationCounts && sport.id === "pickleball" && (
                   <div className="text-xs text-white/70 text-center mt-2" style={{ fontFamily: "Poppins, sans-serif" }}>
                     {isAvailable ? (
@@ -180,12 +178,14 @@ export default function Sports({
                     )}
                   </div>
                 )}
+                */}
                 
                 {selected && (
                   <CheckCircle className="absolute top-3 right-3 text-[#e7ff00] bg-black/60 rounded-full" size={22} />
                 )}
                 
-                {/* Sold out overlay */}
+                {/* Sold out overlay - Commented out */}
+                {/* 
                 {!isAvailable && (
                   <div className="absolute inset-0 bg-black/70 rounded-2xl flex items-center justify-center">
                     <div className="text-center">
@@ -195,6 +195,7 @@ export default function Sports({
                     </div>
                   </div>
                 )}
+                */}
                 {/* Accordion for mobile: only show if selected, else hide */}
                 {isPickleball && isMobile ? (
                   <div
@@ -288,6 +289,7 @@ export default function Sports({
           </div>
           <button
             onClick={() => {
+              /* Commented out alerts
               if (selectedSports.length === 0) {
                 alert("Please select at least one activity before proceeding.");
                 return;
@@ -306,14 +308,10 @@ export default function Sports({
                 alert("One or more selected activities are no longer available. Please refresh the page and select different activities.");
                 return;
               }
-              
+              */
               onNext();
             }}
-            disabled={
-              selectedSports.length === 0 || 
-              (selectedSports.includes("pickleball") && !pickleLevel) ||
-              (registrationCounts && selectedSports.some(sportId => !registrationCounts.availability[sportId]?.available))
-            }
+            disabled={false}
                           className={`mt-2 sm:mt-0 px-8 py-3 rounded-full font-semibold text-lg sm:text-xl bg-[#e7ff00] text-black shadow-lg hover:scale-105 transition-all duration-200
                 ${selectedSports.length === 0 || (selectedSports.includes("pickleball") && !pickleLevel) || (registrationCounts && selectedSports.some(sportId => !registrationCounts.availability[sportId]?.available)) ? "opacity-50 cursor-not-allowed" : ""}
               `}
