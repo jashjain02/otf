@@ -141,7 +141,7 @@ export default function Confirmation({ userData, selectedSports, sports, getTota
                 <div>
                   <span className="text-white/70 text-sm" style={{ fontFamily: "Poppins, sans-serif" }}>Venue</span>
                   <p className="text-white font-medium" style={{ fontFamily: "Poppins, sans-serif" }}>
-                    Off The Mark, Powai
+                  Orangetheory Fitness, Worli 
                   </p>
                 </div>
               </div>
@@ -151,7 +151,7 @@ export default function Confirmation({ userData, selectedSports, sports, getTota
                 <div>
                   <span className="text-white/70 text-sm" style={{ fontFamily: "Poppins, sans-serif" }}>Date</span>
                   <p className="text-white font-medium" style={{ fontFamily: "Poppins, sans-serif" }}>
-                    3rd August 2025
+                    24th August 2025
                   </p>
                 </div>
               </div>
@@ -161,7 +161,7 @@ export default function Confirmation({ userData, selectedSports, sports, getTota
                 <div>
                   <span className="text-white/70 text-sm" style={{ fontFamily: "Poppins, sans-serif" }}>Time</span>
                   <p className="text-white font-medium" style={{ fontFamily: "Poppins, sans-serif" }}>
-                    4 PM to 8 PM
+                    7:30 PM to 10:00 PM
                   </p>
                 </div>
               </div>
@@ -199,12 +199,12 @@ export default function Confirmation({ userData, selectedSports, sports, getTota
                 </p>
               </div>
               
-              <div className="flex items-start gap-3">
+              {/* <div className="flex items-start gap-3">
                 <div className="w-2 h-2 bg-[#e7ff00] rounded-full mt-2 flex-shrink-0"></div>
                 <p className="text-white text-sm" style={{ fontFamily: "Poppins, sans-serif" }}>
-                  Enjoy great food, hydration drinks, coffee & matcha, and DJ RARA's beats!
+                  Enjoy hydration drinks, coffee & matcha, and DJ RARA's beats!
                 </p>
-              </div>
+              </div> */}
             </div>
           </div>
 
