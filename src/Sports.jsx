@@ -39,31 +39,7 @@ export default function Sports({
     }
   };
 
-  const staticSports = [
-    {
-      id: "pickleball",
-      name: "Pickleball Rallies (40 min team slots)",
-      description: "Fun rallies and games for all skill levels.",
-      timing: "4-8pm",
-      price: 800,
-    },
-    /* Commented out other activities
-    {
-      id: "strength",
-      name: "Strength Workout with Team Games",
-      description: "High-intensity strength workouts with electrifying group energy.",
-      timing: "4-5:30pm",
-      price: 700,
-    },
-    {
-      id: "breathwork",
-      name: "Breathwork & Ice Bath Reset Zone",
-      description: "Guided breathwork and ice bath for recovery.",
-      timing: "6-8pm",
-      price: 1300,
-    },
-    */
-  ];
+
 
   return (
     <div className="min-h-screen bg-black relative overflow-hidden">
@@ -111,11 +87,11 @@ export default function Sports({
         )}
         <div className="w-full max-w-5xl flex justify-center">
           <div className="relative flex flex-row items-start gap-6">
-            {staticSports.map((sport) => {
+            {sports.map((sport) => {
             const selected = selectedSports.includes(sport.id);
             // Determine if this is the pickleball card and selected
-            const isPickleball = sport.id === "pickleball";
-            const pickleballSelected = isPickleball && selected;
+            const isOrangetheory = sport.id === "orangetheory";
+            const orangetheorySelected = isOrangetheory && selected;
             
             // Check availability
             const isAvailable = registrationCounts ? registrationCounts.availability[sport.id]?.available : true;
@@ -138,16 +114,16 @@ export default function Sports({
                       : "border-white/20 hover:border-[#e7ff00]/60 cursor-pointer"
                   }
                   focus:ring-2 focus:ring-[#e7ff00]
-                  ${isPickleball && isMobile ? '' : ''}`}
+                  ${isOrangetheory && isMobile ? '' : ''}`}
                 style={{
                   minHeight: isMobile
-                    ? (isPickleball
-                        ? (pickleballSelected ? 280 : 160)
-                        : (selectedSports.includes('pickleball') && selectedSports.length === 1 && pickleballSelected
+                    ? (isOrangetheory
+                        ? (orangetheorySelected ? 280 : 160)
+                        : (selectedSports.includes('orangetheory') && selectedSports.length === 1 && orangetheorySelected
                             ? 280
                             : 160))
-                    : (isPickleball
-                        ? (pickleballSelected ? 380 : 260)
+                    : (isOrangetheory
+                        ? (orangetheorySelected ? 380 : 260)
                         : 260),
                   width: isMobile ? '18rem' : undefined,
                   display: 'flex',
@@ -177,10 +153,64 @@ export default function Sports({
                   <CheckCircle className="absolute top-3 right-3 text-[#e7ff00] bg-black/60 rounded-full" size={22} />
                 )}
 
-                {/* Selection Options - Inside pickleball card */}
-                {isPickleball && selected && (
+                {/* Selection Options - Inside orangetheory card */}
+                {isOrangetheory && selected && (
                   <div className="w-full mt-6">
-                    {/* Play Type Selection */}
+                    {/* Batch Selection */}
+                    <div className="mb-6">
+                      <div className="text-[#e7ff00] font-semibold mb-3 text-center text-base" style={{ fontFamily: 'Clash Display, sans-serif' }}>
+                        Select Your Batch:
+                      </div>
+                      <div className="flex flex-col w-full max-w-xs mx-auto gap-3">
+                        <label
+                          className={`flex items-center justify-center px-4 py-3 rounded-lg cursor-pointer border-2 transition-all
+                            ${playType === "batch1"
+                              ? "border-[#e7ff00] bg-[#e7ff00]/10 text-[#e7ff00] font-bold"
+                              : "border-white/20 bg-white/5 text-white hover:border-[#e7ff00]/60"
+                            }`}
+                          style={{ fontFamily: 'Poppins, sans-serif' }}
+                          onClick={e => e.stopPropagation()}
+                        >
+                          <input
+                            type="radio"
+                            name="batch-selection"
+                            value="batch1"
+                            checked={playType === "batch1"}
+                            onChange={(e) => setPlayType(e.target.value)}
+                            className="sr-only"
+                          />
+                          <div className="flex flex-col items-center">
+                            <span className="font-semibold">Batch 1</span>
+                            <span className="text-sm opacity-80">7:30 – 8:30 AM</span>
+                          </div>
+                        </label>
+                        <label
+                          className={`flex items-center justify-center px-4 py-3 rounded-lg cursor-pointer border-2 transition-all
+                            ${playType === "batch2"
+                              ? "border-[#e7ff00] bg-[#e7ff00]/10 text-[#e7ff00] font-bold"
+                              : "border-white/20 bg-white/5 text-white hover:border-[#e7ff00]/60"
+                            }`}
+                          style={{ fontFamily: 'Poppins, sans-serif' }}
+                          onClick={e => e.stopPropagation()}
+                        >
+                          <input
+                            type="radio"
+                            name="batch-selection"
+                            value="batch2"
+                            checked={playType === "batch2"}
+                            onChange={(e) => setPlayType(e.target.value)}
+                            className="sr-only"
+                          />
+                          <div className="flex flex-col items-center">
+                            <span className="font-semibold">Batch 2</span>
+                            <span className="text-sm opacity-80">9:00 – 10:00 AM</span>
+                          </div>
+                        </label>
+                      </div>
+                    </div>
+
+                    {/* Commented out original single/group selection code */}
+                    {/*
                     <div className="mb-6">
                       <div className="text-[#e7ff00] font-semibold mb-3 text-center text-base" style={{ fontFamily: 'Clash Display, sans-serif' }}>
                         Select Play Type:
@@ -227,7 +257,6 @@ export default function Sports({
                       </div>
                     </div>
 
-                    {/* Conditional Content Based on Play Type */}
                     <div className={`transition-all duration-300 ${playType ? 'opacity-100 max-h-96' : 'opacity-0 max-h-0 overflow-hidden'}`}>
                       {playType === "individual" ? (
                         <>
@@ -285,6 +314,7 @@ export default function Sports({
                         </>
                       )}
                     </div>
+                    */}
                   </div>
                 )}
 
@@ -301,7 +331,7 @@ export default function Sports({
           <div className="text-lg sm:text-xl font-bold text-white" style={{ fontFamily: "Clash Display, sans-serif" }}>
             Total: <span className="text-[#e7ff00]">₹{selectedSports.length > 0
               ? selectedSports.reduce((total, id) => {
-                  const sport = staticSports.find((s) => s.id === id);
+                  const sport = sports.find((s) => s.id === id);
                   return total + (sport ? sport.price : 0);
                 }, 0)
               : 0}
@@ -309,11 +339,10 @@ export default function Sports({
           </div>
           {/* Calculate if the form is valid */}
           {(() => {
-            const isPickleballSelected = selectedSports.includes("pickleball");
+            const isOrangetheorySelected = selectedSports.includes("orangetheory");
             const isValid = selectedSports.length > 0 && 
-              (!isPickleballSelected || 
-                (playType === "individual" && pickleLevel) || 
-                (playType === "group" && playerNames.every(name => name.trim())));
+              (!isOrangetheorySelected || 
+                (playType === "batch1" || playType === "batch2"));
             
             return (
               <button
@@ -323,18 +352,10 @@ export default function Sports({
                     return;
                   }
 
-                  if (selectedSports.includes("pickleball")) {
-                    if (playType === "individual" && !pickleLevel) {
-                      alert("Please select your Pickleball skill level before proceeding.");
+                  if (selectedSports.includes("orangetheory")) {
+                    if (!playType || (playType !== "batch1" && playType !== "batch2")) {
+                      alert("Please select a batch before proceeding.");
                       return;
-                    }
-                    
-                    if (playType === "group") {
-                      const emptyNames = playerNames.filter(name => !name.trim());
-                      if (emptyNames.length > 0) {
-                        alert("Please enter names for all players in your group before proceeding.");
-                        return;
-                      }
                     }
                   }
                   

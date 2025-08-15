@@ -93,8 +93,8 @@ export default function Checkout({
     formData.append("phone", userData.phone);
     formData.append("selected_sports", JSON.stringify(selectedSports));
     formData.append(
-      "pickleball_level",
-      selectedSports.includes("pickleball") ? pickleLevel : ""
+      "orangetheory_batch",
+      selectedSports.includes("orangetheory") ? playType : ""
     );
     if (file) {
       formData.append("file", file);
@@ -183,14 +183,17 @@ export default function Checkout({
                     <div className="flex justify-between items-center text-white">
                       <span style={{ fontFamily: "Poppins, sans-serif" }}>
                         {sport?.name}
-                        {sport?.id === "pickleball" ? (
+                        {sport?.id === "orangetheory" && playType ? (
                           <>
-                            {playType === "individual" ? ` (${pickleLevel})` : " (Group)"}
+                            {playType === "batch1" ? " (Batch 1: 7:30-8:30 AM)" : 
+                             playType === "batch2" ? " (Batch 2: 9:00-10:00 AM)" : ""}
                           </>
                         ) : ""}
                       </span>
                       <span className="text-[#e7ff00] font-semibold" style={{ fontFamily: "Poppins, sans-serif" }}>₹{sport?.price}</span>
                     </div>
+                    {/* Commented out old group members display */}
+                    {/*
                     {sport?.id === "pickleball" && playType === "group" && (
                       <div className="text-sm text-gray-300 ml-4">
                         <div style={{ fontFamily: "Poppins, sans-serif" }}>Group Members:</div>
@@ -201,6 +204,7 @@ export default function Checkout({
                         ))}
                       </div>
                     )}
+                    */}
                   </li>
                 );
               })}

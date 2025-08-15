@@ -53,7 +53,7 @@ export default function Hero({ onRegister }) {
                     style={{
                       color: '#6b58cd',
                       fontSize: '600%',
-                      letterSpacing: '0.01em',
+                      e: '0.01em',
                       lineHeight: 1.05,
                       marginBottom: 0,
                     }}
@@ -99,23 +99,20 @@ export default function Hero({ onRegister }) {
             >
               {/* Location icon */}
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 sm:h-6 sm:w-6 mr-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="#e7ff00" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M12 11.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"/><path strokeLinecap="round" strokeLinejoin="round" d="M19 10.5c0 7-7 11-7 11s-7-4-7-11a7 7 0 1114 0z"/></svg>
-              <span className="mr-2 sm:mr-4">Off The Mark, Powai</span>
+              <span className="mr-2 sm:mr-4">Orangetheory Fitness, Worli</span>
               {/* Date icon */}
               {/* <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 sm:h-6 sm:w-6 mr-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="#e7ff00" strokeWidth="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
               <span className="mr-2 sm:mr-4">3rd August 2025</span> */}
               {/* Time icon */}
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 sm:h-6 sm:w-6 mr-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="#e7ff00" strokeWidth="2"><circle cx="12" cy="12" r="9"/><path strokeLinecap="round" strokeLinejoin="round" d="M12 7v5l3 3"/></svg>
-              <span>4 PM  to 8 PM</span>
+              <span>7:30 AM – 10:30 AM</span>
             </div>
             {/* 50-word white text, same font size as location, no box, max-width as heading */}
             <div
               className="w-full max-w-4xl text-center mt-2 mb-2"
               style={{ color: '#fff', fontFamily: 'Clash Display, sans-serif', fontSize: '0.98rem', fontWeight: 500, lineHeight: 1.5, marginLeft: 'auto', marginRight: 'auto' }}
             >
-              We’re excited to invite you to the <em>Alldays Pre-Launch Experience</em> — a day to kick back, move, and connect.
-  <br />
-  We’ll have great food, hydration drinks, and of course, coffee &amp; matcha to keep you going. Plus, enjoy the beats of our very own  <em>DJ RARA</em>  all evening.
-
+              Experience the ultimate workout — heart-rate based, science-backed, and powered by Orangetheory Fitness. Sweat it out, push your limits, and end the morning with fun team games, prizes, and good vibes.
             </div>
             {/* CTA Button */}
             <button
