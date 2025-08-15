@@ -7,6 +7,7 @@ import Checkout from "./Checkout";
 import TermsAndConditions from "./termsandcondtions";
 import Confirmation from "./Confirmation";
 import { useAnalytics } from "./hooks/useAnalytics";
+import { API_ENDPOINTS } from "./config";
 
 const sports = [
   {
@@ -82,7 +83,7 @@ function App() {
   const fetchRegistrationCounts = async () => {
     setIsLoadingCounts(true);
     try {
-      const response = await fetch('http://localhost:8000/registration-counts');
+      const response = await fetch('https://alldays-c9c62d7851d5.herokuapp.com/registration-counts');
       if (response.ok) {
         const data = await response.json();
         setRegistrationCounts(data);

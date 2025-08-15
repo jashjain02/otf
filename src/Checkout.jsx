@@ -102,7 +102,7 @@ export default function Checkout({
 
     try {
       const res = await fetch(
-        "https://prelaunch-b2bcb24e6530.herokuapp.com/event-registration",
+        "https://alldays-c9c62d7851d5.herokuapp.com/event-registration",
         {
           method: "POST",
           body: formData,
