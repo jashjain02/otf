@@ -161,7 +161,7 @@ export default function Confirmation({ userData, selectedSports, sports, getTota
                 <div>
                   <span className="text-white/70 text-sm" style={{ fontFamily: "Poppins, sans-serif" }}>Time</span>
                   <p className="text-white font-medium" style={{ fontFamily: "Poppins, sans-serif" }}>
-                    7:30 PM to 10:00 PM
+                    7:30 AM to 10:00 AM
                   </p>
                 </div>
               </div>

@@ -13,6 +13,7 @@
   `;
 import React from "react";
 import logo from "./assets/logo.png";
+import onTourLogo from "./assets/OnTourLOGO.PNG";
 
 
 
@@ -21,11 +22,16 @@ export default function Hero({ onRegister }) {
     <>
       <style>{style}</style>
       <div className="relative min-h-screen flex flex-col">
-        {/* Top-left logo and branding */}
-        <header className="absolute top-0 left-0 w-full flex items-center p-4 sm:p-8 z-20">
+        {/* Top header with logos */}
+        <header className="absolute top-0 left-0 w-full flex items-center justify-between p-4 sm:p-8 z-20">
+          {/* Left side - Alldays branding */}
           <div className="flex items-center">
             <img src={logo} alt="Alldays Logo" className="h-10 w-10 sm:h-12 sm:w-12 mr-2" />
             <span className="text-xl sm:text-2xl font-bold tracking-wider" style={{ color: '#e7ff00', fontFamily: 'Clash Display, sans-serif' }}>Alldays</span>
+          </div>
+          {/* Right side - OnTour logo */}
+          <div className="flex items-center">
+            <img src={onTourLogo} alt="OnTour Logo" className="h-10 w-auto sm:h-12 md:h-16 object-contain" />
           </div>
         </header>
         {/* Background image with overlay */}
@@ -58,7 +64,7 @@ export default function Hero({ onRegister }) {
                       marginBottom: 0,
                     }}
                   >
-                    <span
+                    {/* <span
                       className="block font-clash font-semibold"
                       style={{
                         fontSize: '65%',
@@ -67,8 +73,8 @@ export default function Hero({ onRegister }) {
                       }}
                     >
                       THE
-                    </span>
-                    FIRST MOVE
+                    </span> */}
+                    AFTER BURN
                   </span>
                   <span
                     className="font-clash font-semibold block text-right"
