@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { X, User, Mail, Phone } from "lucide-react";
 import bgimage from "./assets/bgimage.jpg";
 import logo from "./assets/logo.png";
+import onTourLogo from "./assets/OnTourLOGO.PNG";
 import { ArrowLeft } from "lucide-react";
 
 // Custom margin for large mobiles
@@ -42,10 +43,15 @@ export default function Register({
           <div className="absolute inset-0 bg-black opacity-80" />
         </div>
         {/* Logo and Alldays branding */}
-        <header className="absolute top-0 left-0 w-full flex items-center p-4 sm:p-8 z-20">
+        <header className="absolute top-0 left-0 w-full flex items-center justify-between p-4 sm:p-8 z-20">
+          {/* Left side - Alldays branding */}
           <div className="flex items-center">
             <img src={logo} alt="Alldays Logo" className="h-10 w-10 sm:h-12 sm:w-12 mr-2" />
             <span className="text-xl sm:text-2xl font-bold tracking-wider" style={{ color: '#e7ff00', fontFamily: 'Clash Display, sans-serif' }}>Alldays</span>
+          </div>
+          {/* Right side - OnTour logo */}
+          <div className="flex items-center">
+            <img src={onTourLogo} alt="OnTour Logo" className="h-10 w-auto sm:h-12 md:h-16 object-contain" />
           </div>
         </header>
         <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-4 sm:p-8 w-full max-w-xs sm:max-w-sm relative shadow-2xl shadow-[#e7ff00]/10 z-10 mt-0 register-modal-large-mobile md:mt-[5%] lg:mt-[3%]">

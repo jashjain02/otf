@@ -15,6 +15,7 @@
 
 import React, { useRef, useState } from "react";
 import logo from "./assets/logo.png";
+import onTourLogo from "./assets/OnTourLOGO.PNG";
 import qr from "./assets/qr.jpeg";
 import bgimage from "./assets/bgimage.jpg";
 
@@ -148,7 +149,8 @@ export default function Checkout({
         <div className="absolute inset-0 bg-black opacity-80"></div>
       </div>
       {/* Header */}
-      <header className="absolute top-0 left-0 w-full flex items-center p-4 sm:p-8 z-20">
+      <header className="absolute top-0 left-0 w-full flex items-center justify-between p-4 sm:p-8 z-20">
+        {/* Left side - Alldays branding */}
         <div className="flex items-center">
           <img src={logo} alt="Alldays Logo" className="h-10 w-10 sm:h-12 sm:w-12 mr-2" />
           <span
@@ -157,6 +159,10 @@ export default function Checkout({
           >
             Alldays
           </span>
+        </div>
+        {/* Right side - OnTour logo */}
+        <div className="flex items-center">
+          <img src={onTourLogo} alt="OnTour Logo" className="h-10 w-auto sm:h-12 md:h-16 object-contain" />
         </div>
       </header>
       <div className="flex flex-col md:flex-row w-full max-w-4xl gap-8 mt-24 md:mt-32 relative z-10 items-center">

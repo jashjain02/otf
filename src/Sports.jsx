@@ -1,5 +1,6 @@
 import React from "react";
 import logo from "./assets/logo.png";
+import onTourLogo from "./assets/OnTourLOGO.PNG";
 import bgimage from "./assets/bgimage.jpg";
 import { CheckCircle, ArrowLeft } from "lucide-react";
 
@@ -56,7 +57,8 @@ export default function Sports({
         <div className="absolute inset-0 bg-black opacity-80"></div>
       </div>
       {/* Header */}
-      <header className="absolute top-0 left-0 w-full flex items-center p-4 sm:p-8 z-20">
+      <header className="absolute top-0 left-0 w-full flex items-center justify-between p-4 sm:p-8 z-20">
+        {/* Left side - Alldays branding */}
         <div className="flex items-center">
           <img src={logo} alt="Alldays Logo" className="h-10 w-10 sm:h-12 sm:w-12 mr-2" />
           <span
@@ -65,6 +67,10 @@ export default function Sports({
           >
             Alldays
           </span>
+        </div>
+        {/* Right side - OnTour logo */}
+        <div className="flex items-center">
+          <img src={onTourLogo} alt="OnTour Logo" className="h-10 w-auto sm:h-12 md:h-16 object-contain" />
         </div>
       </header>
       {/* Sports selection */}
