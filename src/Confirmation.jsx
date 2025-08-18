@@ -47,7 +47,7 @@ export default function Confirmation({ userData, selectedSports, sports, getTota
         </div>
         {/* Right side - OnTour logo */}
         <div className="flex items-center">
-          <img src={onTourLogo} alt="OnTour Logo" className="h-10 w-auto sm:h-12 md:h-16 object-contain" />
+          <img src={onTourLogo} alt="OnTour Logo" className="h-10 w-10 sm:h-12 sm:w-12 object-contain" />
         </div>
       </header>
 

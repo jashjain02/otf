@@ -70,7 +70,7 @@ export default function Sports({
         </div>
         {/* Right side - OnTour logo */}
         <div className="flex items-center">
-          <img src={onTourLogo} alt="OnTour Logo" className="h-10 w-auto sm:h-12 md:h-16 object-contain" />
+          <img src={onTourLogo} alt="OnTour Logo" className="h-10 w-10 sm:h-12 sm:w-12 object-contain" />
         </div>
       </header>
       {/* Sports selection */}
@@ -79,7 +79,7 @@ export default function Sports({
           className="text-2xl sm:text-3xl font-semibold mb-8 text-center"
           style={{ color: "#6b58cd", fontFamily: "Clash Display, sans-serif" }}
         >
-          Choose Your Activities
+          Choose Your Batch
         </h2>
         
         {/* Loading indicator */}

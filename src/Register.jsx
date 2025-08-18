@@ -51,7 +51,7 @@ export default function Register({
           </div>
           {/* Right side - OnTour logo */}
           <div className="flex items-center">
-            <img src={onTourLogo} alt="OnTour Logo" className="h-10 w-auto sm:h-12 md:h-16 object-contain" />
+            <img src={onTourLogo} alt="OnTour Logo" className="h-10 w-10 sm:h-12 sm:w-12 object-contain" />
           </div>
         </header>
         <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-4 sm:p-8 w-full max-w-xs sm:max-w-sm relative shadow-2xl shadow-[#e7ff00]/10 z-10 mt-0 register-modal-large-mobile md:mt-[5%] lg:mt-[3%]">
@@ -62,7 +62,7 @@ export default function Register({
             >
               Register Now
             </h3>
-            <p className="text-gray-400 text-sm sm:text-base">Join the ultimate sports event</p>
+            {/* <p className="text-gray-400 text-sm sm:text-base">Join the ultimate sports event</p> */}
           </div>
           <div className="space-y-4 sm:space-y-3">
             <div>

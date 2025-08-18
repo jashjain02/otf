@@ -12,7 +12,7 @@ import { API_ENDPOINTS } from "./config";
 const sports = [
   {
     id: "orangetheory",
-    name: "Alldays x OnTour Run Club – Orangetheory Fitness Session",
+    name: "Alldays x OnTour Run Club in association with Orangetheory Fitness, Worli",
     description: "60-minute workout session combining treadmill, rowers, and strength training. Partner team games after the workout, with prizes for the winning teams.",
     timing: "7:30 AM – 10:30 AM",
     price: 1200,

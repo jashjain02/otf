@@ -29,10 +29,10 @@ export default function Hero({ onRegister }) {
             <img src={logo} alt="Alldays Logo" className="h-10 w-10 sm:h-12 sm:w-12 mr-2" />
             <span className="text-xl sm:text-2xl font-bold tracking-wider" style={{ color: '#e7ff00', fontFamily: 'Clash Display, sans-serif' }}>Alldays</span>
           </div>
-          {/* Right side - OnTour logo */}
-          <div className="flex items-center">
-            <img src={onTourLogo} alt="OnTour Logo" className="h-10 w-auto sm:h-12 md:h-16 object-contain" />
-          </div>
+                  {/* Right side - OnTour logo */}
+        <div className="flex items-center">
+          <img src={onTourLogo} alt="OnTour Logo" className="h-10 w-10 sm:h-12 sm:w-12 object-contain" />
+        </div>
         </header>
         {/* Background image with overlay */}
         <div className="absolute inset-0 w-full h-full z-0">
@@ -74,7 +74,7 @@ export default function Hero({ onRegister }) {
                     >
                       THE
                     </span> */}
-                    AFTER BURN
+                    OFF TRACK
                   </span>
                   <span
                     className="font-clash font-semibold block text-right"
@@ -85,7 +85,7 @@ export default function Hero({ onRegister }) {
                       marginRight: '0.05em',
                     }}
                   >
-                    by Alldays
+                    by Alldays X OnTour
                   </span>
                 </div>
               </div>
