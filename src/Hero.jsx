@@ -31,7 +31,7 @@ export default function Hero({ onRegister }) {
           </div>
                   {/* Right side - OnTour logo */}
         <div className="flex items-center">
-          <img src={onTourLogo} alt="OnTour Logo" className="h-10 w-10 sm:h-12 sm:w-12 object-contain" />
+          <img src={onTourLogo} alt="OnTour Logo" className="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 object-contain" />
         </div>
         </header>
         {/* Background image with overlay */}

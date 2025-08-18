@@ -162,7 +162,7 @@ export default function Checkout({
         </div>
         {/* Right side - OnTour logo */}
         <div className="flex items-center">
-          <img src={onTourLogo} alt="OnTour Logo" className="h-10 w-10 sm:h-12 sm:w-12 object-contain" />
+          <img src={onTourLogo} alt="OnTour Logo" className="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 object-contain" />
         </div>
       </header>
       <div className="flex flex-col md:flex-row w-full max-w-4xl gap-8 mt-24 md:mt-32 relative z-10 items-center">
