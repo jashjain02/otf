@@ -27,7 +27,7 @@ export default function Hero({ onRegister }) {
           {/* Left side - Alldays branding */}
           <div className="flex items-center">
             <img src={logo} alt="Alldays Logo" className="h-10 w-10 sm:h-12 sm:w-12 mr-2" />
-            <span className="text-xl sm:text-2xl font-bold tracking-wider" style={{ color: '#e7ff00', fontFamily: 'Clash Display, sans-serif' }}>Alldays</span>
+            <span className="text-xl sm:text-2xl font-bold tracking-wider" style={{ color: '#eeeeee', fontFamily: 'Clash Display, sans-serif' }}>Alldays</span>
           </div>
                   {/* Right side - OnTour logo */}
         <div className="flex items-center">
@@ -92,7 +92,7 @@ export default function Hero({ onRegister }) {
             </div>
             {/* Event info line: location and time, mobile-friendly */}
             <div
-              className="flex flex-wrap justify-center items-center gap-2 sm:gap-4 mt-8 mb-6 px-4 sm:px-6 py-3 rounded-full shadow-md font-semibold text-[0.68rem] sm:text-xl backdrop-blur-md border border-white/30"
+              className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-4 mt-8 mb-6 px-4 sm:px-6 py-3 rounded-full shadow-md font-semibold text-[0.68rem] sm:text-xl backdrop-blur-md border border-white/30"
               style={{
                 fontFamily: 'Clash Display, sans-serif',
                 color: '#e7ff00',
@@ -101,15 +101,19 @@ export default function Hero({ onRegister }) {
                 boxShadow: '0 4px 24px 0 rgba(0,0,0,0.10)',
               }}
             >
-              {/* Location icon */}
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 sm:h-6 sm:w-6 mr-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="#e7ff00" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M12 11.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"/><path strokeLinecap="round" strokeLinejoin="round" d="M19 10.5c0 7-7 11-7 11s-7-4-7-11a7 7 0 1114 0z"/></svg>
-              <span className="mr-2 sm:mr-4">Orangetheory Fitness, Worli</span>
+              {/* Location section */}
+              <div className="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 sm:h-6 sm:w-6 mr-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="#e7ff00" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M12 11.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"/><path strokeLinecap="round" strokeLinejoin="round" d="M19 10.5c0 7-7 11-7 11s-7-4-7-11a7 7 0 1114 0z"/></svg>
+                <span>Orangetheory Fitness, Worli</span>
+              </div>
               {/* Date icon */}
               {/* <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 sm:h-6 sm:w-6 mr-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="#e7ff00" strokeWidth="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
               <span className="mr-2 sm:mr-4">3rd August 2025</span> */}
-              {/* Time icon */}
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 sm:h-6 sm:w-6 mr-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="#e7ff00" strokeWidth="2"><circle cx="12" cy="12" r="9"/><path strokeLinecap="round" strokeLinejoin="round" d="M12 7v5l3 3"/></svg>
-              <span>7:30 AM – 10:30 AM</span>
+              {/* Time section */}
+              <div className="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 sm:h-6 sm:w-6 mr-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="#e7ff00" strokeWidth="2"><circle cx="12" cy="12" r="9"/><path strokeLinecap="round" strokeLinejoin="round" d="M12 7v5l3 3"/></svg>
+                <span>7:30 AM – 10:30 AM</span>
+              </div>
             </div>
             {/* 50-word white text, same font size as location, no box, max-width as heading */}
             <div
