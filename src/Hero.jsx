@@ -86,12 +86,10 @@ export default function Hero({ onRegister }) {
             </div>
             {/* Event info line: location and time, mobile-friendly */}
             <div
-              className="flex items-center gap-2 sm:gap-4 mt-8 mb-6 px-2 sm:px-6 py-2 rounded-full shadow-md font-semibold text-[0.68rem] sm:text-xl overflow-x-auto whitespace-nowrap max-w-[80vw] sm:max-w-[32rem] backdrop-blur-md border border-white/30"
+              className="flex flex-wrap justify-center items-center gap-2 sm:gap-4 mt-8 mb-6 px-4 sm:px-6 py-3 rounded-full shadow-md font-semibold text-[0.68rem] sm:text-xl backdrop-blur-md border border-white/30"
               style={{
                 fontFamily: 'Clash Display, sans-serif',
                 color: '#e7ff00',
-                WebkitOverflowScrolling: 'touch',
-                maxWidth: '80vw',
                 fontSize: '0.78rem',
                 background: 'rgba(255,255,255,0.18)',
                 boxShadow: '0 4px 24px 0 rgba(0,0,0,0.10)',
