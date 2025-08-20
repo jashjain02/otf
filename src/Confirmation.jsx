@@ -1,5 +1,6 @@
 import React from "react";
 import logo from "./assets/logo.png";
+import onTourLogo from "./assets/OnTourLOGO.PNG";
 import bgimage from "./assets/bgimage.jpg";
 import { CheckCircle, Calendar, MapPin, Clock, ArrowRight } from "lucide-react";
 
@@ -33,7 +34,8 @@ export default function Confirmation({ userData, selectedSports, sports, getTota
       </div>
 
       {/* Header */}
-      <header className="absolute top-0 left-0 w-full flex items-center p-4 sm:p-8 z-20">
+      <header className="absolute top-0 left-0 w-full flex items-center justify-between p-4 sm:p-8 z-20">
+        {/* Left side - Alldays branding */}
         <div className="flex items-center">
           <img src={logo} alt="Alldays Logo" className="h-10 w-10 sm:h-12 sm:w-12 mr-2" />
           <span
@@ -42,6 +44,10 @@ export default function Confirmation({ userData, selectedSports, sports, getTota
           >
             Alldays
           </span>
+        </div>
+        {/* Right side - OnTour logo */}
+        <div className="flex items-center">
+          <img src={onTourLogo} alt="OnTour Logo" className="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 object-contain" />
         </div>
       </header>
 
@@ -141,7 +147,7 @@ export default function Confirmation({ userData, selectedSports, sports, getTota
                 <div>
                   <span className="text-white/70 text-sm" style={{ fontFamily: "Poppins, sans-serif" }}>Venue</span>
                   <p className="text-white font-medium" style={{ fontFamily: "Poppins, sans-serif" }}>
-                    Off The Mark, Powai
+                  Orangetheory Fitness, Worli 
                   </p>
                 </div>
               </div>
@@ -151,7 +157,7 @@ export default function Confirmation({ userData, selectedSports, sports, getTota
                 <div>
                   <span className="text-white/70 text-sm" style={{ fontFamily: "Poppins, sans-serif" }}>Date</span>
                   <p className="text-white font-medium" style={{ fontFamily: "Poppins, sans-serif" }}>
-                    3rd August 2025
+                    24th August 2025
                   </p>
                 </div>
               </div>
@@ -161,7 +167,7 @@ export default function Confirmation({ userData, selectedSports, sports, getTota
                 <div>
                   <span className="text-white/70 text-sm" style={{ fontFamily: "Poppins, sans-serif" }}>Time</span>
                   <p className="text-white font-medium" style={{ fontFamily: "Poppins, sans-serif" }}>
-                    4 PM to 8 PM
+                    7:30 AM to 10:00 AM
                   </p>
                 </div>
               </div>
@@ -199,12 +205,12 @@ export default function Confirmation({ userData, selectedSports, sports, getTota
                 </p>
               </div>
               
-              <div className="flex items-start gap-3">
+              {/* <div className="flex items-start gap-3">
                 <div className="w-2 h-2 bg-[#e7ff00] rounded-full mt-2 flex-shrink-0"></div>
                 <p className="text-white text-sm" style={{ fontFamily: "Poppins, sans-serif" }}>
-                  Enjoy great food, hydration drinks, coffee & matcha, and DJ RARA's beats!
+                  Enjoy hydration drinks, coffee & matcha, and DJ RARA's beats!
                 </p>
-              </div>
+              </div> */}
             </div>
           </div>
 

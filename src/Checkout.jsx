@@ -15,6 +15,7 @@
 
 import React, { useRef, useState } from "react";
 import logo from "./assets/logo.png";
+import onTourLogo from "./assets/OnTourLOGO.PNG";
 import qr from "./assets/qr.jpeg";
 import bgimage from "./assets/bgimage.jpg";
 
@@ -93,8 +94,8 @@ export default function Checkout({
     formData.append("phone", userData.phone);
     formData.append("selected_sports", JSON.stringify(selectedSports));
     formData.append(
-      "pickleball_level",
-      selectedSports.includes("pickleball") ? pickleLevel : ""
+      "orangetheory_batch",
+      selectedSports.includes("orangetheory") ? playType : ""
     );
     if (file) {
       formData.append("file", file);
@@ -102,7 +103,7 @@ export default function Checkout({
 
     try {
       const res = await fetch(
-        "https://prelaunch-b2bcb24e6530.herokuapp.com/event-registration",
+        "https://alldays-c9c62d7851d5.herokuapp.com/event-registration",
         {
           method: "POST",
           body: formData,
@@ -148,7 +149,8 @@ export default function Checkout({
         <div className="absolute inset-0 bg-black opacity-80"></div>
       </div>
       {/* Header */}
-      <header className="absolute top-0 left-0 w-full flex items-center p-4 sm:p-8 z-20">
+      <header className="absolute top-0 left-0 w-full flex items-center justify-between p-4 sm:p-8 z-20">
+        {/* Left side - Alldays branding */}
         <div className="flex items-center">
           <img src={logo} alt="Alldays Logo" className="h-10 w-10 sm:h-12 sm:w-12 mr-2" />
           <span
@@ -157,6 +159,10 @@ export default function Checkout({
           >
             Alldays
           </span>
+        </div>
+        {/* Right side - OnTour logo */}
+        <div className="flex items-center">
+          <img src={onTourLogo} alt="OnTour Logo" className="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 object-contain" />
         </div>
       </header>
       <div className="flex flex-col md:flex-row w-full max-w-4xl gap-8 mt-24 md:mt-32 relative z-10 items-center">
@@ -183,14 +189,17 @@ export default function Checkout({
                     <div className="flex justify-between items-center text-white">
                       <span style={{ fontFamily: "Poppins, sans-serif" }}>
                         {sport?.name}
-                        {sport?.id === "pickleball" ? (
+                        {sport?.id === "orangetheory" && playType ? (
                           <>
-                            {playType === "individual" ? ` (${pickleLevel})` : " (Group)"}
+                            {playType === "batch1" ? " (Batch 1: 7:30-8:30 AM)" : 
+                             playType === "batch2" ? " (Batch 2: 9:00-10:00 AM)" : ""}
                           </>
                         ) : ""}
                       </span>
                       <span className="text-[#e7ff00] font-semibold" style={{ fontFamily: "Poppins, sans-serif" }}>₹{sport?.price}</span>
                     </div>
+                    {/* Commented out old group members display */}
+                    {/*
                     {sport?.id === "pickleball" && playType === "group" && (
                       <div className="text-sm text-gray-300 ml-4">
                         <div style={{ fontFamily: "Poppins, sans-serif" }}>Group Members:</div>
@@ -201,6 +210,7 @@ export default function Checkout({
                         ))}
                       </div>
                     )}
+                    */}
                   </li>
                 );
               })}

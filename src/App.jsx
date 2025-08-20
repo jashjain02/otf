@@ -7,25 +7,15 @@ import Checkout from "./Checkout";
 import TermsAndConditions from "./termsandcondtions";
 import Confirmation from "./Confirmation";
 import { useAnalytics } from "./hooks/useAnalytics";
+import { API_ENDPOINTS } from "./config";
 
 const sports = [
   {
-    id: "pickleball",
-    name: "Pickleball Rallies (1-hour team slots)",
-    description: "Fun rallies and games for all skill levels.",
-    price: 800,
-  },
-  {
-    id: "strength",
-    name: "Strength Workout with Team Games",
-    description: "Team-based strength and fitness challenges.",
-    price: 700,
-  },
-  {
-    id: "breathwork",
-    name: "Breathwork & Ice Bath Reset Zone",
-    description: "Guided breathwork and ice bath for recovery.",
-    price: 1300,
+    id: "orangetheory",
+    name: "Alldays x OnTour Run Club in association with Orangetheory Fitness, Worli",
+    description: "60-minute workout session combining treadmill, rowers, and strength training. Partner team games after the workout, with prizes for the winning teams.",
+    timing: "7:30 AM – 10:30 AM",
+    price: 1200,
   },
 ];
 
@@ -93,7 +83,7 @@ function App() {
   const fetchRegistrationCounts = async () => {
     setIsLoadingCounts(true);
     try {
-      const response = await fetch('http://localhost:8000/registration-counts');
+      const response = await fetch('https://alldays-c9c62d7851d5.herokuapp.com/registration-counts');
       if (response.ok) {
         const data = await response.json();
         setRegistrationCounts(data);
@@ -102,9 +92,7 @@ function App() {
         // Set default availability if API fails
         setRegistrationCounts({
           availability: {
-            pickleball: { available: false, current_count: 0, limit: 0, remaining: 0 },
-            strength: { available: true, current_count: 0, limit: 50, remaining: 50 },
-            breathwork: { available: true, current_count: 0, limit: 50, remaining: 50 }
+            orangetheory: { available: true, current_count: 0, limit: 50, remaining: 50 }
           }
         });
       }
@@ -113,9 +101,7 @@ function App() {
       // Set default availability if API fails
       setRegistrationCounts({
         availability: {
-          pickleball: { available: false, current_count: 0, limit: 0, remaining: 0 },
-          strength: { available: true, current_count: 0, limit: 50, remaining: 50 },
-          breathwork: { available: true, current_count: 0, limit: 50, remaining: 50 }
+          orangetheory: { available: true, current_count: 0, limit: 50, remaining: 50 }
         }
       });
     } finally {
