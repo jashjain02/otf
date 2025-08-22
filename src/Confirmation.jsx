@@ -68,6 +68,9 @@ export default function Confirmation({ userData, selectedSports, sports, getTota
             <p className="text-white text-lg sm:text-xl opacity-90" style={{ fontFamily: "Poppins, sans-serif" }}>
               You're all set for the Alldays Pre-Launch Experience
             </p>
+            <p className="text-white/70 text-sm mt-2" style={{ fontFamily: "Poppins, sans-serif" }}>
+              📧 Didn’t get the email? Please check your Spam or Junk folder, just in case it was filtered there.
+            </p>
           </div>
 
           {/* Confirmation Card */}
