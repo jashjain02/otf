@@ -18,6 +18,7 @@ import logo from "./assets/logo.png";
 import onTourLogo from "./assets/OnTourLOGO.PNG";
 import qr from "./assets/qr.jpeg";
 import bgimage from "./assets/bgimage.jpg";
+import { API_ENDPOINTS } from "./config";
 
 const UPI_ID = "dhvani.shah0610-1@okaxis";
 
@@ -103,7 +104,7 @@ export default function Checkout({
 
     try {
       const res = await fetch(
-        "https://alldays-c9c62d7851d5.herokuapp.com/event-registration",
+        API_ENDPOINTS.ORANGETHEORY_REGISTRATION,
         {
           method: "POST",
           body: formData,
@@ -113,6 +114,18 @@ export default function Checkout({
         const errData = await res.json();
         throw new Error(errData.detail || "Registration failed");
       }
+      
+      const responseData = await res.json();
+      
+      // Show email status feedback
+      if (responseData.email_sent === false) {
+        setFeedback("✅ Registration successful! However, confirmation email could not be sent. Please check your email or contact support.");
+      } else if (responseData.email_sent === true) {
+        setFeedback("✅ Registration successful! Confirmation email has been sent to your email address.");
+      } else {
+        setFeedback("✅ Registration successful!");
+      }
+      
       // Track successful purchase
       if (typeof window !== 'undefined' && window.gtag) {
         window.gtag('event', 'purchase', {
@@ -123,10 +136,12 @@ export default function Checkout({
         });
       }
       
-      // Redirect to confirmation page immediately
-      if (onSuccess) {
-        onSuccess();
-      }
+      // Redirect to confirmation page after a short delay to show feedback
+      setTimeout(() => {
+        if (onSuccess) {
+          onSuccess();
+        }
+      }, 2000);
     } catch (err) {
       setFeedback("Error: " + err.message);
     } finally {

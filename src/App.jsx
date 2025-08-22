@@ -15,7 +15,7 @@ const sports = [
     name: "Alldays x OnTour Run Club in association with Orangetheory Fitness, Worli",
     description: "60-minute workout session combining treadmill, rowers, and strength training. Partner team games after the workout, with prizes for the winning teams.",
     timing: "7:30 AM – 10:30 AM",
-    price: 1200,
+    price: 1000,
   },
 ];
 

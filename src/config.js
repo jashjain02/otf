@@ -7,6 +7,7 @@ export const API_ENDPOINTS = {
   REGISTRATION_COUNTS: `${API_BASE_URL}/registration-counts`,
   EVENT_REGISTRATION: `${API_BASE_URL}/event-registration`,
   REGISTRATIONS: `${API_BASE_URL}/registrations`,
+  ORANGETHEORY_REGISTRATION: `${API_BASE_URL}/orangetheory-registration-with-email`,
 };
 
 export default API_BASE_URL;
