@@ -190,6 +190,7 @@ export default function Sports({
                             <span className="text-sm opacity-80">7:30 – 8:30 AM</span>
                           </div>
                         </label>
+                        {/* Batch 2 - Original functionality (commented out)
                         <label
                           className={`flex items-center justify-center px-4 py-3 rounded-lg cursor-pointer border-2 transition-all
                             ${playType === "batch2"
@@ -210,6 +211,31 @@ export default function Sports({
                           <div className="flex flex-col items-center">
                             <span className="font-semibold">Batch 2</span>
                             <span className="text-sm opacity-80">9:00 – 10:00 AM</span>
+                          </div>
+                        </label>
+                        */}
+                        
+                        {/* Batch 2 - Sold Out Version */}
+                        <label
+                          className="flex items-center justify-center px-4 py-3 rounded-lg border-2 transition-all opacity-50 cursor-not-allowed"
+                          style={{ 
+                            fontFamily: 'Poppins, sans-serif',
+                            borderColor: '#ef4444',
+                            backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                            color: '#ef4444'
+                          }}
+                        >
+                          <input
+                            type="radio"
+                            name="batch-selection"
+                            value="batch2"
+                            disabled
+                            className="sr-only"
+                          />
+                          <div className="flex flex-col items-center">
+                            <span className="font-semibold">Batch 2</span>
+                            <span className="text-sm opacity-80">9:00 – 10:00 AM</span>
+                            <span className="text-xs font-bold mt-1">SOLD OUT</span>
                           </div>
                         </label>
                       </div>
